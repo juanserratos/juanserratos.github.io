@@ -1,0 +1,25 @@
+:root { 
+	--accent_color: #ed7402;
+/*	--callout_color: 136, 0, 255;*/
+	--callout_color: 181, 171, 255;
+}
+
+*, a { color: white }
+
+body {
+	background-color: rgb(32, 33, 36);
+}
+
+#projects > .ext_link:hover .link_arrow {
+	stroke: white;
+	animation: bluewhite 0.2s;
+}
+
+#portrait {
+	background-color: rgb(50, 50, 55);
+}
+
+@keyframes bluewhite {
+  from { color: var(--accent_color); }
+  to   { color: white; }
+}

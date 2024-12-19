@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "sass": "^1.23.7",
+    "axios": ">=0.21.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.11",
+    "gulp": "^4.0.2"
+  }
+}

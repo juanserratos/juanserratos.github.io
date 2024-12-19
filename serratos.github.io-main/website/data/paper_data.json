@@ -1,0 +1,32 @@
+[{"title": "Curvature-based Learning on Directed Graphs",
+"authors": [ "Advisor: Melanie Weber"],
+"conference": "Harvard Department of Applied Mathematics and Computer Science",
+"year": 2024,
+"image": "digraphs.png",
+"links": {  "Lab website": "https://weber.seas.harvard.edu/"} 
+},{"title": "Reduced Deformation Collision Detection",
+  "authors": ["Advisor: Paul Kry"],
+  "conference": "MIT Summer Geometry Initiative",
+  "year": 2024,
+  "image": "collision.png",
+  "links": {"Project": "https://summergeometry.org/sgi2024/reduced-deformation-collision-detection/"}}, {"title": "Neural Shape Sweeping",
+"authors": [ "Advisors: Noam Aigerman, Silvia Sellan"],
+"conference": "MIT Summer Geometry Initiative",
+"year": 2024,
+"image": "spot_sweep.png",
+"links": {  "Project": "https://summergeometry.org/sgi2024/"},
+"note": "***Paper forthcoming***"
+},
+{"title": "AxivLight: Machine learned model for outdoor time estimation from Axivity AX3 wrist-worn light sensors",
+  "authors": ["Advisor: Prof. Aiden Doherty"],
+  "conference": "***First-author Paper forthcoming***",
+  "year": 2023,
+  "image": "axivlight.png",
+  "links": {"Lab website": "https://www.bdi.ox.ac.uk/research/wearables-group"}
+}, {"title": "Vitamin B12 and folic acid alleviate symptoms of nutritional deficiency by antagonizing aryl hydrocarbon receptor",
+  "authors": ["Advisors: Daniel J Kim, Prof. Akiko Iwasaki"],
+  "conference": "Proceedings of the National Academy of Sciences (PNAS)",
+  "year": 2020,
+  "image": "pnas.png",
+  "links": {"Paper": "https://www.pnas.org/doi/full/10.1073/pnas.2006949117", "Lab website": "https://medicine.yale.edu/profile/akiko-iwasaki/" }
+}]

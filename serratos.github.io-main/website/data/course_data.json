@@ -1,0 +1,14 @@
+[{"title": "Differential Geometry (Harvard, Math 136)",
+  "authors": ["Lead Instructor: Oliver Knill"],
+  "conference": "Fall",
+  "year": 2024,
+  "image": "diffgeo.png",
+  "links": {} 
+}, 
+{"title": "Linear Algebra (Harvard, Math 121)",
+  "authors": ["Lead Instructor: Janet Chen"],
+  "conference": "Spring",
+  "year": 2024,
+  "image": "simplified-matrix-form.jpg",
+  "links": { } 
+}]
