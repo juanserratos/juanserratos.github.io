@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Serratos</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    
+    <!-- MathJax Configuration -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$','$'], ["\\(","\\)"]],
+                processEscapes: true
+            }
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <style>
+        /* Basic styling in case index.css is not available */
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .column {
+            padding: 10px;
+        }
+        
+        .about {
+            flex: 1;
+        }
+        
+        .imBox {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .imBox svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        figcaption {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Juan Serratos</h1>
+    
+    <main>
+        <div class="column about">
+            <h2>About</h2>
+            <p>I am entering to be a first-year graduate student in mathematics at the University of Pennsylvania in the Fall of 2024. This summer I will be supported as a research fellow at MIT as part of SGI. I completed my undergraduate studies at the University of Southern California (USC) in the Spring of 2024. Broadly speaking, I’m interested in the subject of $\mathbb Q$-points and the interplay between different areas of mathematics with the subject. My research interests fit under the umbrella term of arithmetic geometry. The interplay that I’ve indulged most of my time on is $\mathbb Q$-points and algebraic geometry, but I’m learning more, and becoming more interested, by the Galois theory aspect relating to $π_1^{\'{e}t}$. </p>
+            <ul>
+                <li><a href="docs/Juan_Serratos_CV.pdf">CV</a></li>
+            </ul>
+            
+            <h2>Research papers</h2>
+            <ul>
+                <li><a href="https://arxiv.org/abs/2304.03523">On the prime spectrum of the $p$-adic integer polynomial ring with a depiction</a></li>
+            </ul>
+            
+            <h2>Projects</h2>
+            <ul>
+                <li>Coming soon...</li>
+            </ul>
+            
+            <h2>Papers</h2>
+            <ul>
+                <li><a href="docs/18.782 Final Paper (Luis Modes).pdf">Generic Paper Title 1</a></li>
+                <li><a href="docs/18.904 Final Paper Draft (Luis Modes).pdf">Generic Paper Title 2</a></li>
+            </ul>
+            
+            <h2>Notes</h2>
+            <ul>
+                <li><a href="docs/Centro_2024_soluciones.pdf">Generic Note Title 1</a>, with Collaborator</li>
+                <li><a href="docs/Geometría del círculo Seminario 2024.pdf">Generic Note Title 2</a></li>
+                <li><a href="docs/Lista_corta_de_la_OPM.pdf">Generic Note Title 3</a></li>
+                <li><a href="docs/geobuena.pdf">Generic Note Title 4</a></li>
+                <li><a href="docs/material2020.pdf">Generic Note Title 5</a></li>
+                <li><a href="docs/Manipulaciones_algebraicas.pdf">Generic Note Title 6</a></li>
+                <li><a href="docs/OMCC Solutions.pdf">Generic Note Title 7</a></li>
+            </ul>
+            
+            <h2>Contact</h2>
+            <p>My email is <a href="mailto:serratos@upenn.edu"><u>serratos@upenn.edu</u></a>.</p>
+        </div>
+        
+        <div class="column imBox">
+            <!-- Generic Mathematics Visualization SVG -->
+            <svg width="600" height="600" viewBox="0 0 600 600">
+                <!-- Background grid pattern -->
+                <defs>
+                    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#eee" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="600" height="600" fill="url(#grid)" opacity="0.5"/>
+                
+                <!-- Title and description -->
+                <text x="300" y="40" font-size="18" font-family="Helvetica Neue" text-anchor="middle" font-weight="bold"> </text>
+                
+                <!-- Generic Curve -->
+                <path d="M 100,400 C 150,250 200,200 300,200 C 400,200 450,250 500,400" 
+                      fill="none" stroke="#0066cc" stroke-width="2.5" opacity="0.8"/>
+                <text x="300" y="185" font-size="16" font-family="Helvetica Neue" text-anchor="middle" font-style="italic">Example Curve Equation</text>
+                
+                <!-- Points on the curve -->
+                <circle cx="150" cy="320" r="4" fill="#333"/>
+                <text x="150" y="310" font-size="14" font-family="Helvetica Neue" text-anchor="middle">A</text>
+                
+                <circle cx="200" cy="250" r="4" fill="#333"/>
+                <text x="200" y="240" font-size="14" font-family="Helvetica Neue" text-anchor="middle">B</text>
+                
+                <circle cx="350" cy="220" r="4" fill="#333"/>
+                <text x="350" y="210" font-size="14" font-family="Helvetica Neue" text-anchor="middle">C</text>
+                
+                <circle cx="450" cy="300" r="4" fill="#333"/>
+                <text x="450" y="290" font-size="14" font-family="Helvetica Neue" text-anchor="middle">D</text>
+                
+                <!-- Group law on curve (generic lines) -->
+                <line x1="150" y1="320" x2="200" y2="250" stroke="#666" stroke-width="1" stroke-dasharray="4,2"/>
+                <line x1="200" y1="250" x2="350" y2="220" stroke="#666" stroke-width="1" stroke-dasharray="4,2"/>
+                <line x1="350" y1="220" x2="450" y2="300" stroke="#666" stroke-width="1" stroke-dasharray="4,2"/>
+                
+                <!-- Generic Zeta function -->
+                <text x="300" y="450" font-size="16" font-family="Helvetica Neue" text-anchor="middle" font-style="italic">Zeta Function Expression</text>
+                
+                <!-- Generic Modular form -->
+                <path d="M 50,550 C 150,500 250,525 300,500 C 350,475 450,500 550,550" 
+                      fill="none" stroke="#cc3366" stroke-width="2" opacity="0.8"/>
+                <text x="300" y="480" font-size="14" font-family="Helvetica Neue" text-anchor="middle" font-style="italic">Modular Form Series</text>
+                
+                <!-- Generic Schemes -->
+                <rect x="100" y="100" width="150" height="60" fill="none" stroke="#339966" stroke-width="1.5"/>
+                <text x="175" y="130" font-size="14" font-family="Helvetica Neue" text-anchor="middle">Spec A</text>
+                
+                <rect x="350" y="100" width="150" height="60" fill="none" stroke="#339966" stroke-width="1.5"/>
+                <text x="425" y="130" font-size="14" font-family="Helvetica Neue" text-anchor="middle">Spec B</text>
+                
+                <!-- Generic Fiber product -->
+                <path d="M 175,160 L 175,250 L 350,250 L 425,160" stroke="#339966" stroke-width="1" fill="none"/>
+                <text x="260" y="270" font-size="14" font-family="Helvetica Neue" text-anchor="middle">Fiber Product</text>
+                
+                <!-- Generic markers -->
+                <circle cx="100" cy="350" r="20" fill="none" stroke="#ff6600" stroke-width="1.5"/>
+                <text x="100" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">α</text>
+                
+                <circle cx="150" cy="350" r="20" fill="none" stroke="#ff6600" stroke-width="1.5"/>
+                <text x="150" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">β</text>
+                
+                <circle cx="200" cy="350" r="20" fill="none" stroke="#ff6600" stroke-width="1.5"/>
+                <text x="200" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">γ</text>
+                
+                <circle cx="250" cy="350" r="20" fill="none" stroke="#ff6600" stroke-width="1.5"/>
+                <text x="250" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">δ</text>
+                
+                <circle cx="300" cy="350" r="20" fill="none" stroke="#ff6600" stroke-width="1.5"/>
+                <text x="300" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">ε</text>
+                
+                <!-- Generic Cohomology concept -->
+                <ellipse cx="500" cy="350" rx="70" ry="40" fill="none" stroke="#9966cc" stroke-width="1.5" opacity="0.7"/>
+                <text x="500" y="355" font-size="14" font-family="Helvetica Neue" text-anchor="middle">Cohomology Group</text>
+                
+                <!-- Generic Conjecture -->
+                <text x="500" y="150" font-size="14" font-family="Helvetica Neue" fill="#990000" text-anchor="middle">Example Conjecture</text>
+                <path d="M 460,160 L 540,160" stroke="#990000" stroke-width="1" opacity="0.8"/>
+                <text x="500" y="180" font-size="12" font-family="Helvetica Neue" fill="#990000" text-anchor="middle" font-style="italic">Generic Equation</text>
+                
+                <!-- Generic Finiteness theorem -->
+                <text x="150" y="500" font-size="14" font-family="Helvetica Neue" fill="#333" text-anchor="middle">Finiteness Theorem</text>
+                <path d="M 75,510 L 225,510" stroke="#333" stroke-width="1" opacity="0.8"/>
+                <text x="150" y="525" font-size="12" font-family="Helvetica Neue" fill="#333" text-anchor="middle" font-style="italic">Generic Statement</text>
+                
+                <!-- Generic Moduli space -->
+                <circle cx="500" cy="500" r="40" fill="none" stroke="#0099cc" stroke-width="1.5" opacity="0.8"/>
+                <text x="500" y="505" font-size="14" font-family="Helvetica Neue" text-anchor="middle" font-style="italic">Moduli</text>
+                <text x="500" y="525" font-size="12" font-family="Helvetica Neue" text-anchor="middle">(Example moduli space)</text>
+                
+                <!-- Generic Map -->
+                <path d="M 50,175 Q 100,125 150,175 Q 200,225 250,175 Q 300,125 350,175" 
+                      fill="none" stroke="#666666" stroke-width="1.5"/>
+                <text x="75" y="150" font-size="14" font-family="Helvetica Neue">Map: X → Y</text>
+            </svg>
+            <figcaption> </figcaption>
+            <hr/>
+        </div>
+    </main>
+</body>
+</html>
