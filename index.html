@@ -22,17 +22,19 @@
         body {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            max-width: 1200px;
+            max-width: 1600px; /* Increased from 1200px to make the website wider */
             margin: 0 auto;
             padding: 20px;
+            font-size: 11px; /* Reduced from default to 11px */
         }
         
         h1 {
-            font-size: 2.5em;
+            font-size: 2.2em; /* Adjusted for the smaller base font size */
             margin-bottom: 20px;
         }
         
         h2 {
+            font-size: 1.6em; /* Adjusted for the smaller base font size */
             margin-top: 30px;
             margin-bottom: 10px;
         }
@@ -40,6 +42,7 @@
         main {
             display: flex;
             flex-direction: row;
+            width: 100%; /* Ensure main takes full width */
         }
         
         .column {
@@ -47,7 +50,7 @@
         }
         
         .about {
-            flex: 1;
+            flex: 2; /* Increased from 1 to 2 to give more space to the text column */
         }
         
         .imBox {
@@ -74,6 +77,7 @@
         figcaption {
             text-align: center;
             margin: 10px 0;
+            font-size: 11px;
         }
         
         @media (max-width: 768px) {
@@ -89,7 +93,7 @@
     <main>
         <div class="column about">
             <h2>About</h2>
-            <p>I am entering to be a first-year graduate student in mathematics at the University of Pennsylvania in the Fall of 2024. This summer I will be supported as a research fellow at MIT as part of SGI. I completed my undergraduate studies at the University of Southern California (USC) in the Spring of 2024. Broadly speaking, I’m interested in the subject of $\mathbb Q$-points and the interplay between different areas of mathematics with the subject. My research interests fit under the umbrella term of arithmetic geometry. The interplay that I’ve indulged most of my time on is $\mathbb Q$-points and algebraic geometry, but I’m learning more, and becoming more interested, by the Galois theory aspect relating to $π_1^{\'{e}t}$. </p>
+            <p>I am entering to be a first-year graduate student in mathematics at the University of Pennsylvania in the Fall of 2024. This summer I will be supported as a research fellow at MIT as part of SGI. I completed my undergraduate studies at the University of Southern California (USC) in the Spring of 2024. Broadly speaking, I'm interested in the subject of $\mathbb Q$-points and the interplay between different areas of mathematics with the subject. My research interests fit under the umbrella term of arithmetic geometry. The interplay that I've indulged most of my time on is $\mathbb Q$-points and algebraic geometry, but I'm learning more, and becoming more interested, by the Galois theory aspect relating to $π_1^{\'{e}t}$. </p>
             <ul>
                 <li><a href="docs/Juan_Serratos_CV.pdf">CV</a></li>
             </ul>
