@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,23 +18,51 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <style>
-        /* Basic styling in case index.css is not available */
+        /* Color variables for light/dark mode */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --link-color: #0066cc;
+            --heading-color: #333333;
+            --border-color: #dddddd;
+            --toggle-bg: #f0f0f0;
+            --toggle-circle: #555555;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #333333;
+            --text-color: #f0f0f0;
+            --link-color: #88bbff;
+            --heading-color: #ffffff;
+            --border-color: #555555;
+            --toggle-bg: #555555;
+            --toggle-circle: #f0f0f0;
+        }
+        
+        /* Basic styling */
         body {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            max-width: 1600px; /* Increased from 1200px to make the website wider */
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
-            font-size: 11px; /* Reduced from default to 11px */
+            font-size: 11px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3 {
+            color: var(--heading-color);
         }
         
         h1 {
-            font-size: 2.2em; /* Adjusted for the smaller base font size */
+            font-size: 2.2em;
             margin-bottom: 20px;
         }
         
         h2 {
-            font-size: 1.6em; /* Adjusted for the smaller base font size */
+            font-size: 1.6em;
             margin-top: 30px;
             margin-bottom: 10px;
         }
@@ -48,7 +76,7 @@
         main {
             display: flex;
             flex-direction: row;
-            width: 100%; /* Ensure main takes full width */
+            width: 100%;
         }
         
         .column {
@@ -56,7 +84,7 @@
         }
         
         .about {
-            flex: 2; /* Increased from 1 to 2 to give more space to the text column */
+            flex: 2;
         }
         
         .imBox {
@@ -72,7 +100,7 @@
         }
         
         a {
-            color: #0066cc;
+            color: var(--link-color);
             text-decoration: none;
         }
         
@@ -99,15 +127,85 @@
             margin-top: 5px;
         }
         
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: var(--toggle-bg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        
+        .moon-icon, .sun-icon {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .moon-icon {
+            opacity: 0;
+        }
+        
+        .sun-icon {
+            opacity: 1;
+        }
+        
+        [data-theme="dark"] .moon-icon {
+            opacity: 1;
+        }
+        
+        [data-theme="dark"] .sun-icon {
+            opacity: 0;
+        }
+        
+        /* SVG adjustments for dark mode */
+        [data-theme="dark"] svg path,
+        [data-theme="dark"] svg line,
+        [data-theme="dark"] svg circle,
+        [data-theme="dark"] svg rect {
+            stroke-width: 1;
+        }
+        
         @media (max-width: 768px) {
             main {
                 flex-direction: column;
+            }
+            
+            .dark-mode-toggle {
+                bottom: 10px;
+                left: 10px;
             }
         }
     </style>
 </head>
 <body>
     <h1>Juan Serratos</h1>
+    
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </div>
     
     <main>
         <div class="column about">
@@ -160,5 +258,33 @@
             </figure>
         </div>
     </main>
+    
+    <script>
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlElement.setAttribute('data-theme', 'dark');
+        }
+        
+        // Toggle between light and dark themes
+        darkModeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update MathJax elements if they exist
+            if (window.MathJax && MathJax.Hub) {
+                MathJax.Hub.Queue(["Rerender", MathJax.Hub]);
+            }
+        });
+    </script>
 </body>
 </html>
