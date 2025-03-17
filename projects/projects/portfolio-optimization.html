@@ -62,8 +62,16 @@
             margin-top: 30px;
         }
         
+        .visualization-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        
         .visualization-container {
-            margin-bottom: 40px;
+            flex: 0 0 calc(50% - 10px);
+            margin-bottom: 30px;
         }
         
         .visualization-description {
@@ -72,7 +80,7 @@
         
         .visualization-frame {
             width: 100%;
-            height: 600px;
+            height: 500px;
             border: none;
         }
         
@@ -80,11 +88,18 @@
             margin-top: 30px;
             display: block;
         }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 1200px) {
+            .visualization-container {
+                flex: 0 0 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="nav-header">
-        <a href="../index.html">← Back to Home</a>
+        <a href="../../index.html">← Back to Home</a>
     </div>
 
     <h1>Hierarchical Reinforcement Learning System for Multi-Asset Portfolio Optimization</h1>
@@ -130,36 +145,38 @@
     <section class="visualizations">
         <h2>Performance Visualizations</h2>
         
-        <div class="visualization-container">
-            <h3>Performance Analysis</h3>
-            <div class="visualization-description">
-                <p>This visualization shows the overall performance of the reinforcement learning portfolio optimization system compared to benchmark strategies.</p>
+        <div class="visualization-grid">
+            <div class="visualization-container">
+                <h3>Performance Analysis</h3>
+                <div class="visualization-description">
+                    <p>This visualization shows the overall performance of the reinforcement learning portfolio optimization system compared to benchmark strategies.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/performance_20250316_191503.html"></iframe>
             </div>
-            <iframe class="visualization-frame" src="HRLSMAPM/performance_20250316_191503.html"></iframe>
-        </div>
-        
-        <div class="visualization-container">
-            <h3>PNL Horizons</h3>
-            <div class="visualization-description">
-                <p>This visualization illustrates the profit and loss (PNL) performance across different time horizons, demonstrating how the hierarchical approach adapts to various market conditions.</p>
+            
+            <div class="visualization-container">
+                <h3>PNL Horizons</h3>
+                <div class="visualization-description">
+                    <p>This visualization illustrates the profit and loss (PNL) performance across different time horizons, demonstrating how the hierarchical approach adapts to various market conditions.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/pnl_horizons_20250316_191505.html"></iframe>
             </div>
-            <iframe class="visualization-frame" src="HRLSMAPM/pnl_horizons_20250316_191505.html"></iframe>
-        </div>
-        
-        <div class="visualization-container">
-            <h3>Risk Assessment</h3>
-            <div class="visualization-description">
-                <p>This visualization provides a detailed risk analysis of the portfolio, including volatility, drawdowns, and value-at-risk metrics.</p>
+            
+            <div class="visualization-container">
+                <h3>Risk Assessment</h3>
+                <div class="visualization-description">
+                    <p>This visualization provides a detailed risk analysis of the portfolio, including volatility, drawdowns, and value-at-risk metrics.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/risk_20250316_191503.html"></iframe>
             </div>
-            <iframe class="visualization-frame" src="HRLSMAPM/risk_20250316_191503.html"></iframe>
-        </div>
-        
-        <div class="visualization-container">
-            <h3>Return Distributions</h3>
-            <div class="visualization-description">
-                <p>This visualization shows the distribution of returns across different time periods, helping to evaluate the strategy's risk-return profile.</p>
+            
+            <div class="visualization-container">
+                <h3>Return Distributions</h3>
+                <div class="visualization-description">
+                    <p>This visualization shows the distribution of returns across different time periods, helping to evaluate the strategy's risk-return profile.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/return_distributions_20250316_191505.html"></iframe>
             </div>
-            <iframe class="visualization-frame" src="HRLSMAPM/return_distributions_20250316_191505.html"></iframe>
         </div>
     </section>
     
