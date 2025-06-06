@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Serratos</title>
-    <link rel="stylesheet" type="text/css" href="index.css" />
     <!-- SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <!-- Fallback for browsers that don't support SVG favicons -->
@@ -92,16 +91,32 @@
             flex: 2;
         }
         
-        .imBox {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        #antContainer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 20px;
+            clip-path: polygon(
+                100% 0,
+                100% 100%,
+                0 100%,
+                0 calc(100% - 30vh),
+                70vw calc(100% - 30vh),
+                70vw 0
+            );
+            z-index: -1;
         }
-        
-        .imBox svg {
-            max-width: 100%;
-            height: auto;
+
+        #antCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
         }
         
         a {
@@ -235,34 +250,20 @@
             </ul>
             
             <h2>Papers</h2>
-            <ul>
-                <li><a href="docs/18.782 Final Paper (Luis Modes).pdf">Generic Paper Title 1</a></li>
-                <li><a href="docs/18.904 Final Paper Draft (Luis Modes).pdf">Generic Paper Title 2</a></li>
-            </ul>
-            
+            <p>Additional papers will be posted soon.</p>
+
             <h2>Notes</h2>
-            <ul>
-                <li><a href="docs/Centro_2024_soluciones.pdf">Generic Note Title 1</a>, with Collaborator</li>
-                <li><a href="docs/Geometría del círculo Seminario 2024.pdf">Generic Note Title 2</a></li>
-                <li><a href="docs/Lista_corta_de_la_OPM.pdf">Generic Note Title 3</a></li>
-                <li><a href="docs/geobuena.pdf">Generic Note Title 4</a></li>
-                <li><a href="docs/material2020.pdf">Generic Note Title 5</a></li>
-                <li><a href="docs/Manipulaciones_algebraicas.pdf">Generic Note Title 6</a></li>
-                <li><a href="docs/OMCC Solutions.pdf">Generic Note Title 7</a></li>
-            </ul>
+            <p>Notes are temporarily unavailable.</p>
             
             <h2>Contact</h2>
             <p>My email is <a href="mailto:serratos@upenn.edu"><u>serratos@upenn.edu</u></a>.</p>
         </div>
         
-        <div class="column imBox">
-            <figure>
-                <object type="image/svg+xml" data="groth.svg" width="100%" height="400">
-                </object>
-                <figcaption> </figcaption>
-            </figure>
-        </div>
     </main>
+
+    <div id="antContainer">
+        <canvas id="antCanvas" width="800" height="800"></canvas>
+    </div>
     
     <script>
         // Dark mode toggle functionality
@@ -281,15 +282,82 @@
         darkModeToggle.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
+
+            updateColors();
+            redrawGrid();
+
             // Update MathJax elements if they exist
             if (window.MathJax && MathJax.Hub) {
                 MathJax.Hub.Queue(["Rerender", MathJax.Hub]);
             }
         });
+
+        // Langton's Ant Colony
+        const canvas = document.getElementById('antCanvas');
+        const ctx = canvas.getContext('2d');
+        const cellSize = 4;
+        const cols = Math.floor(canvas.width / cellSize);
+        const rows = Math.floor(canvas.height / cellSize);
+        const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));
+
+        class Ant {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.dir = 0; // 0=up,1=right,2=down,3=left
+            }
+            step() {
+                const state = grid[this.y][this.x];
+                grid[this.y][this.x] = state ^ 1;
+                drawCell(this.x, this.y);
+                this.dir = (this.dir + (state === 0 ? 1 : 3)) % 4;
+                if (this.dir === 0) this.y = (this.y - 1 + rows) % rows;
+                else if (this.dir === 1) this.x = (this.x + 1) % cols;
+                else if (this.dir === 2) this.y = (this.y + 1) % rows;
+                else this.x = (this.x - 1 + cols) % cols;
+            }
+        }
+
+        const ants = [];
+        for (let i = 0; i < 25; i++) {
+            ants.push(new Ant(Math.floor(Math.random() * cols), Math.floor(Math.random() * rows)));
+        }
+
+        let whiteColor = '#ffffff';
+        let blackColor = '#000000';
+        function updateColors() {
+            const styles = getComputedStyle(document.documentElement);
+            whiteColor = styles.getPropertyValue('--text-color').trim() || whiteColor;
+            blackColor = styles.getPropertyValue('--bg-color').trim() || blackColor;
+        }
+
+        function redrawGrid() {
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    drawCell(x, y);
+                }
+            }
+        }
+        updateColors();
+        redrawGrid();
+
+        function drawCell(x, y) {
+            ctx.fillStyle = grid[y][x] ? blackColor : whiteColor;
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+
+        ctx.fillStyle = whiteColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const stepDelay = 100; // milliseconds between frames
+        function animate() {
+            ants.forEach(a => a.step());
+            setTimeout(() => requestAnimationFrame(animate), stepDelay);
+        }
+        animate();
     </script>
 </body>
 </html>
