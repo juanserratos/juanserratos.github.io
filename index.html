@@ -382,6 +382,109 @@
       }, 100);
     }
 
+    // Define text content areas to avoid (in viewport coordinates)
+    function getTextAreas() {
+      const mainContent = document.querySelector('.about');
+      const rect = mainContent.getBoundingClientRect();
+      
+      // Add smaller padding around text areas - just avoid spawning right on text
+      const padding = 50; // pixels to stay away from text
+      
+      return {
+        left: rect.left - padding,
+        right: rect.right + padding,
+        top: rect.top - padding,
+        bottom: rect.bottom + padding
+      };
+    }
+
+    // Check if a position is too close to text area
+    function isTooCloseToText(x, y) {
+      const textAreas = getTextAreas();
+      const pixelX = x * cellSize;
+      const pixelY = y * cellSize;
+      
+      return pixelX >= textAreas.left && 
+             pixelX <= textAreas.right && 
+             pixelY >= textAreas.top && 
+             pixelY <= textAreas.bottom;
+    }
+
+    // Generate spawn position with various strategies
+    function generateSpawnPosition(preferredZone) {
+      let x, y;
+      let attempts = 0;
+      const maxAttempts = 50;
+      
+      do {
+        switch(preferredZone) {
+          case 'center-scattered':
+            // Scattered around center but not too close to text
+            const angle = Math.random() * Math.PI * 2;
+            const radius = Math.random() * Math.min(cols, rows) * 0.3;
+            x = Math.floor(cols/2 + Math.cos(angle) * radius);
+            y = Math.floor(rows/2 + Math.sin(angle) * radius);
+            break;
+          case 'mid-zones':
+            // Middle areas between center and edges
+            if (Math.random() < 0.5) {
+              x = Math.floor(cols * (0.2 + Math.random() * 0.6));
+              y = Math.random() < 0.5 ? Math.floor(rows * 0.2) : Math.floor(rows * 0.8);
+            } else {
+              x = Math.random() < 0.5 ? Math.floor(cols * 0.2) : Math.floor(cols * 0.8);
+              y = Math.floor(rows * (0.2 + Math.random() * 0.6));
+            }
+            break;
+          case 'random-all':
+            // Truly random across entire canvas
+            x = Math.floor(Math.random() * cols);
+            y = Math.floor(Math.random() * rows);
+            break;
+          case 'edges':
+            // Near edges but not corners
+            if (Math.random() < 0.5) {
+              x = Math.random() < 0.5 ? Math.floor(Math.random() * cols * 0.1) : Math.floor(cols * 0.9 + Math.random() * cols * 0.1);
+              y = Math.floor(rows * 0.1 + Math.random() * rows * 0.8);
+            } else {
+              x = Math.floor(cols * 0.1 + Math.random() * cols * 0.8);
+              y = Math.random() < 0.5 ? Math.floor(Math.random() * rows * 0.1) : Math.floor(rows * 0.9 + Math.random() * rows * 0.1);
+            }
+            break;
+          case 'corners':
+            // Corner regions
+            const corner = Math.floor(Math.random() * 4);
+            const spread = 0.15;
+            switch(corner) {
+              case 0: // top-left
+                x = Math.floor(Math.random() * cols * spread);
+                y = Math.floor(Math.random() * rows * spread);
+                break;
+              case 1: // top-right
+                x = Math.floor(cols * (1 - spread) + Math.random() * cols * spread);
+                y = Math.floor(Math.random() * rows * spread);
+                break;
+              case 2: // bottom-left
+                x = Math.floor(Math.random() * cols * spread);
+                y = Math.floor(rows * (1 - spread) + Math.random() * rows * spread);
+                break;
+              case 3: // bottom-right
+                x = Math.floor(cols * (1 - spread) + Math.random() * cols * spread);
+                y = Math.floor(rows * (1 - spread) + Math.random() * rows * spread);
+                break;
+            }
+            break;
+          default:
+            // Default to random
+            x = Math.floor(Math.random() * cols);
+            y = Math.floor(Math.random() * rows);
+        }
+        
+        attempts++;
+      } while (isTooCloseToText(x, y) && attempts < maxAttempts);
+      
+      return { x, y };
+    }
+
     // Enhanced ant class with different rule sets
     class Ant {
       constructor(x, y, ruleSet = 0) {
@@ -462,43 +565,36 @@
       }
     }
 
-    // Create ants with different behaviors
+    // Create ants with different behaviors, distributed across the canvas
     const ants = [];
     
-    // Classic ants - main swarm in center
+    // Classic ants - scattered around center area
     for (let i = 0; i < 15; i++) {
-      ants.push(new Ant(
-        Math.floor(cols/2 + (Math.random() - 0.5) * cols * 0.3),
-        Math.floor(rows/2 + (Math.random() - 0.5) * rows * 0.3),
-        0
-      ));
+      const pos = generateSpawnPosition('center-scattered');
+      ants.push(new Ant(pos.x, pos.y, 0));
     }
     
-    // Classic ants from edges
+    // Classic ants - mid zones between center and edges
     for (let i = 0; i < 10; i++) {
-      ants.push(new Ant(
-        Math.random() < 0.5 ? Math.floor(Math.random() * cols * 0.2) : Math.floor(cols * 0.8 + Math.random() * cols * 0.2),
-        Math.floor(Math.random() * rows),
-        0
-      ));
+      const pos = generateSpawnPosition('mid-zones');
+      ants.push(new Ant(pos.x, pos.y, 0));
     }
     
-    // Modified rule ants - scattered
+    // Modified rule ants - random distribution
     for (let i = 0; i < 12; i++) {
-      ants.push(new Ant(
-        Math.floor(Math.random() * cols),
-        Math.floor(Math.random() * rows),
-        1
-      ));
+      const pos = generateSpawnPosition('random-all');
+      ants.push(new Ant(pos.x, pos.y, 1));
     }
     
-    // Chaotic ants
-    for (let i = 0; i < 8; i++) {
-      ants.push(new Ant(
-        Math.floor(Math.random() * cols),
-        Math.random() < 0.5 ? Math.floor(Math.random() * rows * 0.3) : Math.floor(rows * 0.7 + Math.random() * rows * 0.3),
-        2
-      ));
+    // Chaotic ants - edges and corners for contrast
+    for (let i = 0; i < 5; i++) {
+      const pos = generateSpawnPosition('edges');
+      ants.push(new Ant(pos.x, pos.y, 2));
+    }
+    
+    for (let i = 0; i < 3; i++) {
+      const pos = generateSpawnPosition('corners');
+      ants.push(new Ant(pos.x, pos.y, 2));
     }
 
     updateColors();
