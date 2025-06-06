@@ -120,7 +120,6 @@
       pointer-events: none;
       overflow: hidden;
       z-index: -1;
-      /* Removed any mask-image or blending */
     }
 
     #antCanvas {
@@ -128,9 +127,7 @@
       height: 100%;
       display: block;
       border: none;
-      /* **Removed**: filter: blur(0.5px); opacity: 0.8; */
-      /* **Removed**: clip-path: ...; */
-      /* Now it simply covers the entire viewport with no transparency. */
+      background-color: var(--bg-color);
     }
 
     a {
@@ -207,7 +204,6 @@
         bottom: 10px;
         left: 10px;
       }
-      /* No clip‐path on the canvas even in mobile */
     }
   </style>
 </head>
@@ -296,6 +292,8 @@
     //─────────────────────────────────────────────────────────────────────────────
     const darkModeToggle = document.getElementById('darkModeToggle');
     const htmlElement    = document.documentElement;
+    const canvas         = document.getElementById('antCanvas');
+    const ctx            = canvas.getContext('2d');
 
     // If user previously chose a theme, use it; otherwise pick system preference:
     const savedTheme = localStorage.getItem('theme');
@@ -320,19 +318,50 @@
       }
     });
 
-
     //─────────────────────────────────────────────────────────────────────────────
     //  LANGTON’S ANT SETUP
     //─────────────────────────────────────────────────────────────────────────────
-    const canvas = document.getElementById('antCanvas');
-    const ctx    = canvas.getContext('2d');
-
     const cellSize = 3;
     const cols = Math.floor(canvas.width / cellSize);
     const rows = Math.floor(canvas.height / cellSize);
 
     // Grid of 0/1 for each cell. 0 = “white,” 1 = “black.”
     const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));
+
+    let whiteColor = '#ffffff';
+    let blackColor = '#1a1a1a';
+
+    function updateColors() {
+      const styles = getComputedStyle(document.documentElement);
+      whiteColor = styles.getPropertyValue('--bg-color').trim();
+      blackColor = styles.getPropertyValue('--ant-black').trim();
+    }
+
+    function redrawGrid() {
+      // Paint entire canvas with the background color first
+      ctx.fillStyle = whiteColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw every “black” cell
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (grid[y][x] === 1) {
+            ctx.fillStyle = blackColor;
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+    }
+
+    function drawCell(x, y) {
+      if (grid[y][x] === 1) {
+        ctx.fillStyle = blackColor;
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      } else {
+        ctx.fillStyle = whiteColor;
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      }
+    }
 
     class Ant {
       constructor(x, y) {
@@ -352,7 +381,7 @@
       }
     }
 
-    // Create some ants (e.g. 15 on right, 10 on bottom)
+    // Create ants
     const ants = [];
     for (let i = 0; i < 15; i++) {
       ants.push(new Ant(
@@ -367,48 +396,12 @@
       ));
     }
 
-    // These will hold the CSS‐computed colors for “white” and “black”
-    let whiteColor = '#ffffff';
-    let blackColor = '#1a1a1a';
-
-    function updateColors() {
-      const styles = getComputedStyle(document.documentElement);
-      whiteColor = styles.getPropertyValue('--bg-color').trim();
-      blackColor = styles.getPropertyValue('--ant-black').trim();
-    }
-
-    function redrawGrid() {
-      // Clear entire canvas to the page background color
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw every “black” cell in its new color
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          if (grid[y][x] === 1) {
-            ctx.fillStyle = blackColor;
-            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-          }
-        }
-      }
-    }
-
-    function drawCell(x, y) {
-      if (grid[y][x] === 1) {
-        // Fill black cells
-        ctx.fillStyle = blackColor;
-        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      } else {
-        // Clear white cells (reveals the exact background color)
-        ctx.clearRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      }
-    }
-
-    // Initialize colors + grid
     updateColors();
     redrawGrid();
 
-    const stepDelay = 200;      // milliseconds between frames
-    let stepsPerFrame = 5;      // how many ant‐steps per frame
+    // Adjusted for faster animation
+    const stepDelay = 50;     // milliseconds between frames (was 200)
+    let stepsPerFrame = 15;   // ant‐steps per frame (was 5)
 
     function animate() {
       for (let i = 0; i < stepsPerFrame; i++) {
