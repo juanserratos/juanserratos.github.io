@@ -103,6 +103,11 @@
             max-width: 100%;
             height: auto;
         }
+
+        .imBox canvas {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+        }
         
         a {
             color: var(--link-color);
@@ -256,11 +261,7 @@
         </div>
         
         <div class="column imBox">
-            <figure>
-                <object type="image/svg+xml" data="groth.svg" width="100%" height="400">
-                </object>
-                <figcaption> </figcaption>
-            </figure>
+            <canvas id="antCanvas" width="400" height="400"></canvas>
         </div>
     </main>
     
@@ -281,15 +282,73 @@
         darkModeToggle.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
+
+            updateColors();
+
             // Update MathJax elements if they exist
             if (window.MathJax && MathJax.Hub) {
                 MathJax.Hub.Queue(["Rerender", MathJax.Hub]);
             }
         });
+
+        // Langton's Ant Colony
+        const canvas = document.getElementById('antCanvas');
+        const ctx = canvas.getContext('2d');
+        const cellSize = 4;
+        const cols = Math.floor(canvas.width / cellSize);
+        const rows = Math.floor(canvas.height / cellSize);
+        const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));
+
+        class Ant {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.dir = 0; // 0=up,1=right,2=down,3=left
+            }
+            step() {
+                const state = grid[this.y][this.x];
+                grid[this.y][this.x] = state ^ 1;
+                drawCell(this.x, this.y);
+                this.dir = (this.dir + (state === 0 ? 1 : 3)) % 4;
+                if (this.dir === 0) this.y = (this.y - 1 + rows) % rows;
+                else if (this.dir === 1) this.x = (this.x + 1) % cols;
+                else if (this.dir === 2) this.y = (this.y + 1) % rows;
+                else this.x = (this.x - 1 + cols) % cols;
+            }
+        }
+
+        const ants = [];
+        for (let i = 0; i < 25; i++) {
+            ants.push(new Ant(Math.floor(Math.random() * cols), Math.floor(Math.random() * rows)));
+        }
+
+        let whiteColor = '#ffffff';
+        let blackColor = '#000000';
+        function updateColors() {
+            const styles = getComputedStyle(document.documentElement);
+            whiteColor = styles.getPropertyValue('--bg-color').trim() || whiteColor;
+            blackColor = styles.getPropertyValue('--text-color').trim() || blackColor;
+        }
+        updateColors();
+
+        function drawCell(x, y) {
+            ctx.fillStyle = grid[y][x] ? blackColor : whiteColor;
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+
+        ctx.fillStyle = whiteColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        function animate() {
+            for (let i = 0; i < 50; i++) {
+                ants.forEach(a => a.step());
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
