@@ -38,13 +38,17 @@
       --toggle-bg: #f0f0f0;
       --toggle-circle: #555555;
 
-      /* “ant-white” always matches the page background exactly */
+      /* Ant colors */
       --ant-white: var(--bg-color);
       --ant-black: #1a1a1a;
+      --ant-accent-1: #0066cc;
+      --ant-accent-2: #ff6b6b;
+      --ant-accent-3: #4ecdc4;
+      --ant-trail-opacity: 0.15;
     }
 
     [data-theme="dark"] {
-      --bg-color: #333333;
+      --bg-color: #1a1a1a;
       --text-color: #f0f0f0;
       --link-color: #88bbff;
       --heading-color: #ffffff;
@@ -52,9 +56,13 @@
       --toggle-bg: #555555;
       --toggle-circle: #f0f0f0;
 
-      /* “ant-white” again = page background */
+      /* Ant colors */
       --ant-white: var(--bg-color);
       --ant-black: #e0e0e0;
+      --ant-accent-1: #88bbff;
+      --ant-accent-2: #ff9999;
+      --ant-accent-3: #66d9d4;
+      --ant-trail-opacity: 0.08;
     }
 
     /*─────────────────────────────────────────────────────────────────────────────*/
@@ -79,6 +87,8 @@
     h1 {
       font-size: 2.2em;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     h2 {
@@ -97,6 +107,8 @@
       display: flex;
       flex-direction: row;
       width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
     .column {
@@ -109,7 +121,7 @@
     }
 
     /*─────────────────────────────────────────────────────────────────────────────*/
-    /*  ANTLON’S CANVAS (FULLSCREEN, NO BLENDING)                                  */
+    /*  ENHANCED ANT CANVAS                                                        */
     /*─────────────────────────────────────────────────────────────────────────────*/
     #antContainer {
       position: fixed;
@@ -119,7 +131,7 @@
       height: 100vh;
       pointer-events: none;
       overflow: hidden;
-      z-index: -1;
+      z-index: 0;
     }
 
     #antCanvas {
@@ -128,6 +140,12 @@
       display: block;
       border: none;
       background-color: var(--bg-color);
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     a {
@@ -188,14 +206,6 @@
     [data-theme="dark"] .moon-icon { opacity: 1; }
     [data-theme="dark"] .sun-icon { opacity: 0; }
 
-    /* SVG stroke‐width tweak in dark mode (optional) */
-    [data-theme="dark"] svg path,
-    [data-theme="dark"] svg line,
-    [data-theme="dark"] svg circle,
-    [data-theme="dark"] svg rect {
-      stroke-width: 1;
-    }
-
     @media (max-width: 768px) {
       main {
         flex-direction: column;
@@ -235,13 +245,13 @@
       <h2>About</h2>
       <p>
         I am a first‐year graduate student in mathematics at the University of Pennsylvania.
-        Last summer I was supported as a research fellow at MIT’s CSAIL as part of SGI.
+        Last summer I was supported as a research fellow at MIT's CSAIL as part of SGI.
         I completed my undergraduate studies at the University of Southern California (USC)
-        in the Spring of 2024. Broadly speaking, I’m interested in the subject of
+        in the Spring of 2024. Broadly speaking, I'm interested in the subject of
         $\mathbf{Q}$‐points and the interplay between different areas of mathematics
         with the subject. My research interests fit under the umbrella term of arithmetic geometry.
-        The interplay that I’ve indulged most of my time on is $\mathbf{Q}$‐points and algebraic geometry,
-        but I’m learning more, and becoming more interested, by the Galois theory aspect relating to
+        The interplay that I've indulged most of my time on is $\mathbf{Q}$‐points and algebraic geometry,
+        but I'm learning more, and becoming more interested, by the Galois theory aspect relating to
         $\pi_1^{\text{ét}}$.
       </p>
       <ul>
@@ -283,7 +293,7 @@
   </main>
 
   <div id="antContainer">
-    <canvas id="antCanvas" width="1200" height="1200"></canvas>
+    <canvas id="antCanvas"></canvas>
   </div>
 
   <script>
@@ -310,7 +320,7 @@
       localStorage.setItem('theme', newTheme);
 
       updateColors();
-      redrawGrid();
+      fadeTransition();
 
       // Rerender any MathJax if present
       if (window.MathJax && MathJax.Hub) {
@@ -319,96 +329,250 @@
     });
 
     //─────────────────────────────────────────────────────────────────────────────
-    //  LANGTON’S ANT SETUP
+    //  ENHANCED LANGTON'S ANT SETUP
     //─────────────────────────────────────────────────────────────────────────────
-    const cellSize = 3;
-    const cols = Math.floor(canvas.width / cellSize);
-    const rows = Math.floor(canvas.height / cellSize);
+    
+    // Responsive canvas sizing
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    // Grid of 0/1 for each cell. 0 = “white,” 1 = “black.”
-    const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));
+    const cellSize = 2; // Smaller cells for higher resolution
+    let cols = Math.floor(canvas.width / cellSize);
+    let rows = Math.floor(canvas.height / cellSize);
 
-    let whiteColor = '#ffffff';
-    let blackColor = '#1a1a1a';
+    // Grid stores visit count and age for each cell
+    let grid = Array.from({ length: rows }, () => 
+      Array.from({ length: cols }, () => ({ state: 0, age: 0, visits: 0 }))
+    );
+
+    // Trail system for smooth fading
+    const trailCanvas = document.createElement('canvas');
+    const trailCtx = trailCanvas.getContext('2d');
+    trailCanvas.width = canvas.width;
+    trailCanvas.height = canvas.height;
+
+    let colors = {
+      white: '#ffffff',
+      black: '#1a1a1a',
+      accent1: '#0066cc',
+      accent2: '#ff6b6b',
+      accent3: '#4ecdc4',
+      trailOpacity: 0.15
+    };
 
     function updateColors() {
       const styles = getComputedStyle(document.documentElement);
-      whiteColor = styles.getPropertyValue('--bg-color').trim();
-      blackColor = styles.getPropertyValue('--ant-black').trim();
+      colors.white = styles.getPropertyValue('--bg-color').trim();
+      colors.black = styles.getPropertyValue('--ant-black').trim();
+      colors.accent1 = styles.getPropertyValue('--ant-accent-1').trim();
+      colors.accent2 = styles.getPropertyValue('--ant-accent-2').trim();
+      colors.accent3 = styles.getPropertyValue('--ant-accent-3').trim();
+      colors.trailOpacity = parseFloat(styles.getPropertyValue('--ant-trail-opacity').trim());
     }
 
-    function redrawGrid() {
-      // Paint entire canvas with the background color first
-      ctx.fillStyle = whiteColor;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw every “black” cell
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          if (grid[y][x] === 1) {
-            ctx.fillStyle = blackColor;
-            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-          }
-        }
-      }
+    function fadeTransition() {
+      canvas.style.opacity = '0.3';
+      setTimeout(() => {
+        canvas.style.transition = 'opacity 0.5s ease-out';
+        canvas.style.opacity = '1';
+      }, 100);
     }
 
-    function drawCell(x, y) {
-      if (grid[y][x] === 1) {
-        ctx.fillStyle = blackColor;
-        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      } else {
-        ctx.fillStyle = whiteColor;
-        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-      }
-    }
-
+    // Enhanced ant class with different rule sets
     class Ant {
-      constructor(x, y) {
+      constructor(x, y, ruleSet = 0) {
         this.x = x;
         this.y = y;
-        this.dir = Math.floor(Math.random() * 4); // 0=up,1=right,2=down,3=left
+        this.dir = Math.floor(Math.random() * 4);
+        this.ruleSet = ruleSet;
+        this.color = [colors.accent1, colors.accent2, colors.accent3][ruleSet % 3];
+        this.speed = 1 + Math.random() * 0.5;
+        this.age = 0;
+        this.trail = [];
+        this.maxTrailLength = 20;
       }
+
       step() {
-        const state = grid[this.y][this.x];
-        grid[this.y][this.x] = state ^ 1;
-        drawCell(this.x, this.y);
-        this.dir = (this.dir + (state === 0 ? 1 : 3)) % 4;
+        const cell = grid[this.y][this.x];
+        
+        // Different rules for different ants
+        if (this.ruleSet === 0) {
+          // Classic Langton's Ant
+          cell.state = cell.state ^ 1;
+          this.dir = (this.dir + (cell.state === 0 ? 1 : 3)) % 4;
+        } else if (this.ruleSet === 1) {
+          // Modified rule: RRLR
+          cell.state = (cell.state + 1) % 4;
+          const turns = [1, 1, 3, 1];
+          this.dir = (this.dir + turns[cell.state]) % 4;
+        } else {
+          // Chaotic rule
+          cell.state = cell.state ^ 1;
+          this.dir = (this.dir + (cell.visits % 2 === 0 ? 1 : 2)) % 4;
+        }
+
+        cell.visits++;
+        cell.age = 0;
+        
+        // Update trail
+        this.trail.push({ x: this.x, y: this.y });
+        if (this.trail.length > this.maxTrailLength) {
+          this.trail.shift();
+        }
+
+        // Move ant
         if (this.dir === 0) this.y = (this.y - 1 + rows) % rows;
         else if (this.dir === 1) this.x = (this.x + 1) % cols;
         else if (this.dir === 2) this.y = (this.y + 1) % rows;
         else this.x = (this.x - 1 + cols) % cols;
+
+        this.age++;
+      }
+
+      draw() {
+        // Draw trail with gradient
+        this.trail.forEach((pos, i) => {
+          const alpha = (i / this.trail.length) * colors.trailOpacity;
+          ctx.fillStyle = this.color + Math.floor(alpha * 255).toString(16).padStart(2, '0');
+          ctx.fillRect(pos.x * cellSize, pos.y * cellSize, cellSize, cellSize);
+        });
+
+        // Draw ant head with glow
+        const gradient = ctx.createRadialGradient(
+          this.x * cellSize + cellSize/2, 
+          this.y * cellSize + cellSize/2, 
+          0,
+          this.x * cellSize + cellSize/2, 
+          this.y * cellSize + cellSize/2, 
+          cellSize * 3
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, this.color + '00');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(
+          this.x * cellSize - cellSize * 2, 
+          this.y * cellSize - cellSize * 2, 
+          cellSize * 5, 
+          cellSize * 5
+        );
       }
     }
 
-    // Create ants
+    // Create ants with different behaviors
     const ants = [];
+    
+    // Classic ants - main swarm in center
     for (let i = 0; i < 15; i++) {
       ants.push(new Ant(
-        Math.floor(cols * 0.5 + Math.random() * cols * 0.5),
-        Math.floor(Math.random() * rows)
+        Math.floor(cols/2 + (Math.random() - 0.5) * cols * 0.3),
+        Math.floor(rows/2 + (Math.random() - 0.5) * rows * 0.3),
+        0
       ));
     }
+    
+    // Classic ants from edges
     for (let i = 0; i < 10; i++) {
       ants.push(new Ant(
+        Math.random() < 0.5 ? Math.floor(Math.random() * cols * 0.2) : Math.floor(cols * 0.8 + Math.random() * cols * 0.2),
+        Math.floor(Math.random() * rows),
+        0
+      ));
+    }
+    
+    // Modified rule ants - scattered
+    for (let i = 0; i < 12; i++) {
+      ants.push(new Ant(
         Math.floor(Math.random() * cols),
-        Math.floor(rows * 0.8 + Math.random() * rows * 0.2)
+        Math.floor(Math.random() * rows),
+        1
+      ));
+    }
+    
+    // Chaotic ants
+    for (let i = 0; i < 8; i++) {
+      ants.push(new Ant(
+        Math.floor(Math.random() * cols),
+        Math.random() < 0.5 ? Math.floor(Math.random() * rows * 0.3) : Math.floor(rows * 0.7 + Math.random() * rows * 0.3),
+        2
       ));
     }
 
     updateColors();
-    redrawGrid();
 
-    // Adjusted for faster animation
-    const stepDelay = 50;     // milliseconds between frames (was 200)
-    let stepsPerFrame = 15;   // ant‐steps per frame (was 5)
-
+    // Main animation loop
+    let frame = 0;
     function animate() {
-      for (let i = 0; i < stepsPerFrame; i++) {
-        ants.forEach(a => a.step());
+      // Clear with slight fade for trail effect
+      ctx.fillStyle = colors.white + '08';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Age cells and draw grid
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const cell = grid[y][x];
+          cell.age++;
+
+          if (cell.state !== 0) {
+            // Calculate color based on visits and age
+            const intensity = Math.min(1, cell.visits / 10);
+            const fade = Math.max(0, 1 - cell.age / 1000);
+            
+            if (cell.visits > 5) {
+              // Frequently visited cells get accent colors
+              const colorIndex = cell.visits % 3;
+              const accentColor = [colors.accent1, colors.accent2, colors.accent3][colorIndex];
+              ctx.fillStyle = accentColor + Math.floor(fade * intensity * 255).toString(16).padStart(2, '0');
+            } else {
+              // Regular cells
+              ctx.fillStyle = colors.black + Math.floor(fade * 255).toString(16).padStart(2, '0');
+            }
+            
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        }
       }
-      setTimeout(() => requestAnimationFrame(animate), stepDelay);
+
+      // Step and draw ants
+      const stepsPerFrame = Math.floor(8 + Math.sin(frame * 0.01) * 3);
+      for (let i = 0; i < stepsPerFrame; i++) {
+        ants.forEach(ant => ant.step());
+      }
+      
+      ants.forEach(ant => ant.draw());
+
+      frame++;
+      requestAnimationFrame(animate);
     }
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      cols = Math.floor(canvas.width / cellSize);
+      rows = Math.floor(canvas.height / cellSize);
+      
+      // Rebuild grid
+      const newGrid = Array.from({ length: rows }, () => 
+        Array.from({ length: cols }, () => ({ state: 0, age: 0, visits: 0 }))
+      );
+      
+      // Copy old data where possible
+      for (let y = 0; y < Math.min(rows, grid.length); y++) {
+        for (let x = 0; x < Math.min(cols, grid[0].length); x++) {
+          newGrid[y][x] = grid[y][x];
+        }
+      }
+      
+      grid = newGrid;
+      
+      // Update trail canvas
+      trailCanvas.width = canvas.width;
+      trailCanvas.height = canvas.height;
+    });
+
     animate();
   </script>
 </body>
