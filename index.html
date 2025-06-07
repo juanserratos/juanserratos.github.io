@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
@@ -603,14 +602,19 @@
     }
     
     // New ants for bottom-middle-left area to fill sparse region
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 8; i++) {
       const pos = generateSpawnPosition('bottom-middle-left');
       ants.push(new Ant(pos.x, pos.y, 0)); // Classic rule
     }
     
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       const pos = generateSpawnPosition('bottom-middle-left');
       ants.push(new Ant(pos.x, pos.y, 1)); // Modified rule for variety
+    }
+    
+    for (let i = 0; i < 4; i++) {
+      const pos = generateSpawnPosition('bottom-middle-left');
+      ants.push(new Ant(pos.x, pos.y, 2)); // Chaotic rule for extra activity
     }
 
     updateColors();
