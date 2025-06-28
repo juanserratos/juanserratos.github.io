@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Juan Serratos</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="alternate icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- MathJax and Markdown support -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --link-color: #0066cc;
+      --heading-color: #333333;
+      --border-color: #dddddd;
+      --toggle-bg: #f0f0f0;
+      --toggle-circle: #555555;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --link-color: #88bbff;
+      --heading-color: #ffffff;
+      --border-color: #555555;
+      --toggle-bg: #555555;
+      --toggle-circle: #f0f0f0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 11px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1, h2, h3 {
+      color: var(--heading-color);
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: var(--toggle-bg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    .moon-icon, .sun-icon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .moon-icon { opacity: 0; }
+    .sun-icon { opacity: 1; }
+
+    [data-theme="dark"] .moon-icon { opacity: 1; }
+    [data-theme="dark"] .sun-icon { opacity: 0; }
+
+    #content { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <nav><a href="../index.html">← Back to Home</a></nav>
+  <h1>Blog</h1>
+
+  <div class="dark-mode-toggle" id="darkModeToggle">
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1"  x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </div>
+
+  <div id="postList">
+    <ul id="posts"></ul>
+  </div>
+  <div id="content"></div>
+
+  <script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlElement = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      htmlElement.setAttribute('data-theme', 'dark');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      if (window.MathJax && MathJax.Hub) {
+        MathJax.Hub.Queue(["Rerender", MathJax.Hub]);
+      }
+    });
+
+    const posts = [
+      { file: 'welcome', title: 'Welcome' }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const post = params.get('post');
+    if (post) {
+      document.getElementById('postList').style.display = 'none';
+      fetch('posts/' + post + '.md')
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById('content').innerHTML = marked.parse(text);
+          if (window.MathJax && MathJax.Hub) {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'content']);
+          }
+        })
+        .catch(() => {
+          document.getElementById('content').innerHTML = '<p>Post not found.</p>';
+        });
+    } else {
+      document.getElementById('content').style.display = 'none';
+      const ul = document.getElementById('posts');
+      posts.forEach(p => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '?post=' + p.file;
+        a.textContent = p.title;
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
