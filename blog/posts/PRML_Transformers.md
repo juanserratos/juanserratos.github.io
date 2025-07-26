@@ -50,3 +50,22 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^\intercal}{\sqrt{d_k
 The output is a matrix $Z \in \mathbb R^{n \times d_v}$ where the $i$-th row is the contextualized vector $z_i$. 
 
 
+Just to be clear (I believe in a concrete understanding rather than a facetious, mechanical implemenation-level knowledge of things), you form a score $S = QK^\intercal /\sqrt{d_k}$ if shape $n \times n$ where $S_{ij}$ measures how much token $i$ should pay attention to token $j$, and $\text{softmax} (S)$ normalizes each row into a probability distribution over the $n$ positions. The matrix $V$ is also $n \times d_v$ where row $j$ of $V$, say, $v_j$, is the "content vector" for position $j$. Then when you multiply the $n \times n$ attention weights by $V$, each output row $z_i = \sum_{j=1}^n \alpha_{ij} v_j$. Intuitively, $Q K^\intercal$ decides *how much* to look at each other position; $V$ is *what* information you actually pull in. 
+
+
+### II.1 Multi-Head Attention
+
+This is actually *new* in the paper, but it fits better in this recap section. Basically, a single attention mechanism might learn to focus on a particular type of relationship, e.g. syntactic dependencies $\rightarrow$ "The chicken didn't cross the road because it was too tired" is an example where attention may learn that "it" is more attached to "chicken" rather than "road" or "The". But to allow the model to jointly attend to information from different representation subspaces at different position, the authors introduce **Multi-Head Attention**. 
+
+The idea is to run $h$ different attention mechanisms, or "heads", in parallel. Each head has its own set of learnable weight matrices $ \{W_Q^{(i)}, W_K^{(i)}, W_V^{(i)} \}_{i=1}^h$ and 
+
+$$\text{head}_i = \text{Attention}(X W_Q^{(i)}, XW_K^{(i)}, XW_V^{(i)} )$$ 
+
+Typically the dimensions are chosen such that $d_k = d_v = d_ {\text{model} }/h$—this keeps the total computation similar to a single head with full dimensionality. The ouputs of the $h$ heads are then concatenated and passed through a final layer projection, governed by a weight matrix $W_O \in \mathbb R^{h d_v \times d_{\text{model}} }$, to produce a final output to the layer.
+
+$$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W_O$$
+
+This structural choice gives each head the ability to specialize in capturing different types of relationships within the sequence, making it way more expressive and powerful. 
+
+
+### III. Transformer Architecture
