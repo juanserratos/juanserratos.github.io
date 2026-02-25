@@ -1,0 +1,333 @@
+/*═══════════════════════════════════════════════════════════════════════════════*/
+/*  SHARED STYLES — Juan Serratos Website                                      */
+/*  Dark theme, sidebar navigation, inner page layout                          */
+/*═══════════════════════════════════════════════════════════════════════════════*/
+
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #d0d0d0;
+  --heading-color: #f0f0f0;
+  --link-color: #d4944c;
+  --link-hover: #e0aa66;
+  --border-color: #333333;
+  --sidebar-bg: #222222;
+  --sidebar-header: #f0f0f0;
+  --accent: #d4944c;
+  --muted: #888888;
+  --content-bg: #1a1a1a;
+  --card-bg: #242424;
+  --card-hover: #2a2a2a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  font-size: 13px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  color: var(--heading-color);
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  PAGE LAYOUT — sidebar right, content left                                  */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content-panel {
+  flex: 1;
+  padding: 60px 60px 80px 60px;
+  overflow-y: auto;
+  max-width: calc(100% - 220px);
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  SIDEBAR                                                                    */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  min-height: 100vh;
+  background-color: var(--sidebar-bg);
+  border-left: 1px solid var(--border-color);
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-lang {
+  font-size: 0.9em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--muted);
+}
+
+.sidebar-lang a {
+  color: var(--muted);
+  font-size: 0.95em;
+}
+.sidebar-lang a:hover {
+  color: var(--link-color);
+}
+.sidebar-lang a.active {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.sidebar-header {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--sidebar-header);
+  margin-bottom: 24px;
+}
+
+.sidebar-header a {
+  color: var(--sidebar-header);
+  text-decoration: none;
+}
+.sidebar-header a:hover {
+  color: var(--link-color);
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 16px;
+}
+
+.sidebar nav ul li a {
+  color: var(--link-color);
+  font-size: 1em;
+}
+.sidebar nav ul li a:hover {
+  color: var(--link-hover);
+}
+.sidebar nav ul li a.current {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.85em;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  CONTENT TYPOGRAPHY                                                         */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.content-panel h1 {
+  font-size: 2em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.content-panel h2 {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-top: 35px;
+  margin-bottom: 15px;
+  color: var(--heading-color);
+}
+
+.content-panel h3 {
+  font-size: 1.15em;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  color: var(--heading-color);
+}
+
+.content-panel p {
+  margin-bottom: 12px;
+  max-width: 750px;
+}
+
+.content-panel ul {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.content-panel li {
+  margin-bottom: 6px;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  CV-STYLE ENTRIES                                                           */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.cv-entry {
+  margin-bottom: 20px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border-color);
+}
+
+.cv-entry .institution {
+  font-weight: 600;
+  color: var(--heading-color);
+  font-size: 1.05em;
+}
+
+.cv-entry .role {
+  color: var(--text-color);
+}
+
+.cv-entry .date {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.cv-entry .location {
+  color: var(--muted);
+  font-size: 0.9em;
+  float: right;
+}
+
+.cv-entry ul {
+  margin-top: 6px;
+  margin-left: 18px;
+}
+
+.cv-entry ul li {
+  font-size: 0.95em;
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  PUBLICATION ENTRIES                                                         */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.pub-entry {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-left: 2px solid var(--border-color);
+  transition: border-color 0.2s ease;
+}
+
+.pub-entry:hover {
+  border-left-color: var(--accent);
+}
+
+.pub-entry .pub-number {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.pub-entry .pub-title {
+  font-style: italic;
+  color: var(--heading-color);
+}
+
+.pub-entry .pub-authors {
+  color: var(--text-color);
+}
+
+.pub-entry .pub-venue {
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+.pub-entry a {
+  font-size: 0.9em;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  COURSE ENTRIES                                                             */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.course-entry {
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent);
+}
+
+.course-entry .course-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.course-entry .course-meta {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  ACTIVITY / TALK ENTRIES                                                    */
+/*─────────────────────────────────────────────────────────────────────────────*/
+.activity-entry {
+  margin-bottom: 14px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border-color);
+}
+
+.activity-entry .activity-title {
+  color: var(--heading-color);
+  font-weight: 500;
+}
+
+.activity-entry .activity-meta {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+/*─────────────────────────────────────────────────────────────────────────────*/
+/*  RESPONSIVE                                                                 */
+/*─────────────────────────────────────────────────────────────────────────────*/
+@media (max-width: 768px) {
+  .page-layout {
+    flex-direction: column;
+  }
+
+  .content-panel {
+    padding: 30px 20px 60px 20px;
+    max-width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    min-height: auto;
+    position: static;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+}

@@ -1,0 +1,266 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Serratos</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --link-color: #88bbff;
+      --heading-color: #ffffff;
+      --border-color: #333333;
+
+      --sidebar-bg: #222222;
+      --sidebar-text: #cccccc;
+      --sidebar-link: #d4944c;
+      --sidebar-header-color: #f0f0f0;
+
+      --hero-name-color: #d4944c;
+      --hero-subtitle-color: #aaaaaa;
+      --hero-quote-color: #bbbbbb;
+
+      --ant-white: #1a1a1a;
+      --ant-black: #e0e0e0;
+      --ant-accent-1: #88bbff;
+      --ant-accent-2: #ff9999;
+      --ant-accent-3: #66d9d4;
+      --ant-trail-opacity: 0.08;
+
+      --muted: #888888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      font-size: 13px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page-layout { display: flex; height: 100vh; width: 100vw; }
+
+    .hero-panel {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 60px 40px 60px;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: 600;
+      color: var(--hero-name-color);
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.6em;
+      font-weight: 300;
+      color: var(--hero-subtitle-color);
+      margin-bottom: 0;
+    }
+
+    .hero-quote {
+      position: relative;
+      z-index: 2;
+      padding: 0 60px;
+      margin-top: 120px;
+      max-width: 600px;
+    }
+
+    .hero-quote blockquote {
+      font-size: 1.1em;
+      font-style: normal;
+      color: var(--hero-quote-color);
+      line-height: 1.7;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-quote blockquote p { margin-bottom: 8px; }
+
+    .hero-quote cite {
+      display: block;
+      font-size: 0.95em;
+      color: var(--hero-quote-color);
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      height: 100vh;
+      background-color: var(--sidebar-bg);
+      border-left: 1px solid var(--border-color);
+      padding: 30px 25px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 3;
+      overflow-y: auto;
+    }
+
+    .sidebar-lang {
+      font-size: 0.9em;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--muted);
+    }
+    .sidebar-lang a { color: var(--muted); }
+    .sidebar-lang a:hover { color: var(--sidebar-link); }
+    .sidebar-lang a.active { color: var(--heading-color); font-weight: 600; }
+
+    .sidebar-header {
+      font-size: 1.15em;
+      font-weight: 700;
+      color: var(--sidebar-header-color);
+      margin-bottom: 24px;
+    }
+
+    .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar nav ul li { margin-bottom: 16px; }
+    .sidebar nav ul li a {
+      color: var(--sidebar-link);
+      font-size: 1.05em;
+      text-decoration: none;
+    }
+    .sidebar nav ul li a:hover { text-decoration: underline; opacity: 0.8; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      font-size: 0.85em;
+      color: var(--sidebar-text);
+      opacity: 0.6;
+      line-height: 1.5;
+    }
+
+    /* ANT CANVAS */
+    #antContainer {
+      position: fixed;
+      top: 0; left: 0;
+      width: calc(100vw - 220px);
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    #antCanvas {
+      width: 100%; height: 100%;
+      display: block; border: none;
+      background-color: var(--bg-color);
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      html, body { overflow: auto; }
+      .page-layout { flex-direction: column; height: auto; min-height: 100vh; }
+      .hero-panel { min-height: 60vh; }
+      .hero-content { padding: 40px 24px 16px 24px; }
+      .hero-content h1 { font-size: 2em; }
+      .hero-content .subtitle { font-size: 1.1em; }
+      .hero-quote { padding: 0 24px; margin-top: 40px; }
+      .hero-quote blockquote { font-size: 1em; }
+      .sidebar {
+        width: 100%; min-width: 100%; height: auto;
+        border-left: none; border-top: 1px solid var(--border-color);
+        padding: 24px 24px;
+      }
+      .sidebar-header { margin-bottom: 16px; }
+      .sidebar nav ul { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+      .sidebar nav ul li { margin-bottom: 0; }
+      .sidebar-footer { padding-top: 12px; }
+      #antContainer { width: 100vw; height: 60vh; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-layout">
+    <div class="hero-panel">
+      <div class="hero-content">
+        <h1>Juan Serratos</h1>
+        <p class="subtitle">Mathematics, University of Pennsylvania</p>
+      </div>
+
+      <div class="hero-quote">
+        <blockquote>
+          <p>&laquo; El cielo, al atardecer, parec&iacute;a una flor carn&iacute;vora. &raquo;</p>
+          <cite>&ndash; Roberto Bola&ntilde;o, <em>2666</em></cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-lang">
+        <a href="index.html" class="active">EN</a> |
+        <a href="fr/index.html">FR</a> |
+        <a href="es/index.html">ES</a>
+      </div>
+      <div class="sidebar-header">Juan Serratos</div>
+      <nav>
+        <ul>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="activities.html">Activities</a></li>
+          <li><a href="blog/index.html">Writing</a></li>
+          <li><a href="projects/projects/portfolio-optimization.html">Projects</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <p>serratos@upenn.edu</p>
+      </div>
+    </aside>
+  </div>
+
+  <div id="antContainer">
+    <canvas id="antCanvas"></canvas>
+  </div>
+
+  <script src="ants.js"></script>
+</body>
+</html>

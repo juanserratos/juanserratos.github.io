@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Reinforcement Learning System for Multi-Asset Portfolio Optimization - Juan Serratos</title>
+    <link rel="stylesheet" type="text/css" href="../index.css" />
+    
+    <!-- MathJax Configuration -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$','$'], ["\\(","\\)"]],
+                processEscapes: true
+            }
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <style>
+        /* Color variables for light/dark mode */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --link-color: #0066cc;
+            --heading-color: #333333;
+            --border-color: #dddddd;
+            --toggle-bg: #f0f0f0;
+            --toggle-circle: #555555;
+            --iframe-border: #dddddd;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --link-color: #88bbff;
+            --heading-color: #ffffff;
+            --border-color: #555555;
+            --toggle-bg: #555555;
+            --toggle-circle: #f0f0f0;
+        }
+        
+        /* Basic styling */
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 11px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3 {
+            color: var(--heading-color);
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: var(--toggle-bg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .moon-icon, .sun-icon {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .moon-icon {
+            opacity: 0;
+        }
+        
+        .sun-icon {
+            opacity: 1;
+        }
+        
+        [data-theme="dark"] .moon-icon {
+            opacity: 1;
+        }
+        
+        [data-theme="dark"] .sun-icon {
+            opacity: 0;
+        }
+        
+        .nav-header {
+            margin-bottom: 30px;
+        }
+        
+        .visualizations {
+            margin-top: 30px;
+        }
+        
+        .visualization-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        
+        .visualization-container {
+            flex: 0 0 calc(50% - 10px);
+            margin-bottom: 30px;
+        }
+        
+        .visualization-description {
+            margin-bottom: 15px;
+        }
+        
+        .visualization-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        
+        .back-link {
+            margin-top: 30px;
+            display: block;
+        }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 1200px) {
+            .visualization-container {
+                flex: 0 0 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dark-mode-toggle {
+                bottom: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="../../index.html">← Back to Home</a>
+    </div>
+
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </div>
+
+    <h1>Hierarchical Reinforcement Learning System for Multi-Asset Portfolio Optimization</h1>
+    
+    <section class="project-description">
+        <h2>Project Overview</h2>
+        <p>
+            This project implements a novel hierarchical reinforcement learning system designed for multi-asset portfolio optimization. 
+            The system employs a multi-level approach to decision-making that mirrors the complexity of financial markets.
+        </p>
+        
+        <p>
+            The hierarchical structure consists of:
+        </p>
+        <ul>
+            <li><strong>Strategic Level:</strong> Determines long-term asset allocation based on macroeconomic indicators and market regimes</li>
+            <li><strong>Tactical Level:</strong> Adjusts portfolio weights in response to medium-term market trends and sector rotations</li>
+            <li><strong>Execution Level:</strong> Optimizes trade timing and execution to minimize transaction costs and market impact</li>
+        </ul>
+        
+        <p>
+            By decomposing the portfolio optimization problem into these hierarchical levels, the system can effectively manage 
+            the trade-off between exploration and exploitation at different time scales, leading to more robust performance 
+            across various market conditions.
+        </p>
+
+        <h2>Methodology</h2>
+        <p>
+            The reinforcement learning framework utilizes a combination of:
+        </p>
+        <ul>
+            <li>Deep Q-Networks (DQN) for discrete action spaces</li>
+            <li>Proximal Policy Optimization (PPO) for continuous portfolio weight adjustments</li>
+            <li>Hierarchical reinforcement learning to coordinate across different time horizons</li>
+        </ul>
+        
+        <p>
+            The state space incorporates price data, volume, technical indicators, and fundamental factors across multiple assets.
+            The reward function balances risk-adjusted returns with considerations for transaction costs and drawdown control.
+        </p>
+    </section>
+    
+    <section class="visualizations">
+        <h2>Performance Visualizations</h2>
+        
+        <div class="visualization-grid">
+            <div class="visualization-container">
+                <h3>Performance Analysis</h3>
+                <div class="visualization-description">
+                    <p>This visualization shows the overall performance of the reinforcement learning portfolio optimization system compared to benchmark strategies.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/performance_20250316_191503.html"></iframe>
+            </div>
+            
+            <div class="visualization-container">
+                <h3>PNL Horizons</h3>
+                <div class="visualization-description">
+                    <p>This visualization illustrates the profit and loss (PNL) performance across different time horizons, demonstrating how the hierarchical approach adapts to various market conditions.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/pnl_horizons_20250316_191505.html"></iframe>
+            </div>
+            
+            <div class="visualization-container">
+                <h3>Risk Assessment</h3>
+                <div class="visualization-description">
+                    <p>This visualization provides a detailed risk analysis of the portfolio, including volatility, drawdowns, and value-at-risk metrics.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/risk_20250316_191503.html"></iframe>
+            </div>
+            
+            <div class="visualization-container">
+                <h3>Return Distributions</h3>
+                <div class="visualization-description">
+                    <p>This visualization shows the distribution of returns across different time periods, helping to evaluate the strategy's risk-return profile.</p>
+                </div>
+                <iframe class="visualization-frame" src="HRLSMAPM/return_distributions_20250316_191505.html"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <a href="../index.html" class="back-link">← Back to Home</a>
+    
+    <script>
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlElement.setAttribute('data-theme', 'dark');
+        }
+        
+        // Toggle between light and dark themes
+        darkModeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update MathJax elements if they exist
+            if (window.MathJax && MathJax.Hub) {
+                MathJax.Hub.Queue(["Rerender", MathJax.Hub]);
+            }
+        });
+    </script>
+</body>
+</html>
