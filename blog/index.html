@@ -210,6 +210,7 @@
     function showList() {
       postList.style.display = 'block';
       postView.style.display = 'none';
+      renderPosts();
       history.pushState(null, '', 'index.html');
     }
 
