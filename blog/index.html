@@ -208,7 +208,20 @@
       fetch(`posts/${post.file}.md`)
         .then(r => r.text())
         .then(text => {
-          document.getElementById('postContent').innerHTML = marked.parse(text);
+          // Preserve LaTeX delimiters so markdown escaping does not strip backslashes.
+          const protectedText = text
+            .replace(/\\\(/g, 'MATH_DELIM_LPAREN')
+            .replace(/\\\)/g, 'MATH_DELIM_RPAREN')
+            .replace(/\\\[/g, 'MATH_DELIM_LBRACK')
+            .replace(/\\\]/g, 'MATH_DELIM_RBRACK');
+
+          const parsedHtml = marked.parse(protectedText)
+            .replace(/MATH_DELIM_LPAREN/g, '\\(')
+            .replace(/MATH_DELIM_RPAREN/g, '\\)')
+            .replace(/MATH_DELIM_LBRACK/g, '\\[')
+            .replace(/MATH_DELIM_RBRACK/g, '\\]');
+
+          document.getElementById('postContent').innerHTML = parsedHtml;
           if (window.MathJax && MathJax.Hub) {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'postContent']);
           }
