@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writing - Juan Serratos</title>
+  <title>Games - Juan Serratos</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="alternate icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../style.css">
@@ -107,12 +107,18 @@
     <div class="content-panel">
 
       <div id="postList">
-        <h1>Writing</h1>
-        <div id="postsGrid"></div>
+        <h1>Games</h1>
+        <div class="games-layout">
+          <div class="games-posts" id="postsGrid"></div>
+          <div class="games-canvas-wrap">
+            <canvas id="gameCanvas"></canvas>
+            <div class="games-score" id="gameScore"></div>
+          </div>
+        </div>
       </div>
 
       <div id="postView" style="display: none;">
-        <span class="back-link" id="backLink">&larr; Back to all writing</span>
+        <span class="back-link" id="backLink">&larr; Back to all games</span>
         <div class="post-container">
           <div class="post-header">
             <h2 id="postTitle"></h2>
@@ -142,8 +148,8 @@
           <li><a href="../books.html">Books</a></li>
           <li><a href="../courses.html">Courses</a></li>
           <li><a href="../activities.html">Activities</a></li>
-          <li><a href="index.html" class="current">Writing</a></li>
-          <li><a href="../games/index.html">Games</a></li>
+          <li><a href="../blog/index.html">Writing</a></li>
+          <li><a href="index.html" class="current">Games</a></li>
           <li><a href="../projects/projects/portfolio-optimization.html">Projects</a></li>
         </ul>
       </nav>
@@ -156,18 +162,18 @@
   <script>
     const posts = [
       {
-        file: 'Carry_Trades',
-        title: "Carry Trades",
-        date: '2026-02-25',
-        tags: ['finance'],
-        readTime: '1 min read'
+        file: 'Goofspiel',
+        title: "Goofspiel",
+        date: '2026-03-04',
+        tags: ['game-theory', 'auctions'],
+        readTime: '6 min read'
       },
       {
-        file: 'Merger_Arbitrarges_and_Prediction_Markets',
-        title: "Merger Arbitrarges and Prediction Markets",
-        date: '2026-02-24',
-        tags: ['finance'],
-        readTime: '1 min read'
+        file: 'Nim',
+        title: "Nim",
+        date: '2026-03-04',
+        tags: ['combinatorics', 'game-theory'],
+        readTime: '8 min read'
       }
     ];
 
@@ -177,6 +183,7 @@
     const postView = document.getElementById('postView');
     const postsGrid = document.getElementById('postsGrid');
     const backLink = document.getElementById('backLink');
+    const canvasWrap = document.querySelector('.games-canvas-wrap');
 
     function formatDate(dateStr) {
       const date = new Date(dateStr);
@@ -190,7 +197,6 @@
         const entry = document.createElement('div');
         entry.className = 'pub-entry';
         entry.style.cursor = 'pointer';
-        const num = posts.length - i;
         entry.innerHTML = `
           <span class="pub-title">${post.title}</span><br>
           <span class="pub-venue">${formatDate(post.date)} &middot; ${post.readTime}</span>
@@ -210,7 +216,6 @@
       fetch(`posts/${post.file}.md`)
         .then(r => r.text())
         .then(text => {
-          // Preserve LaTeX delimiters so markdown escaping does not strip backslashes.
           const protectedText = text
             .replace(/\\\(/g, 'MATH_DELIM_LPAREN')
             .replace(/\\\)/g, 'MATH_DELIM_RPAREN')
@@ -263,5 +268,6 @@
       }
     });
   </script>
+  <script src="goofspiel.js"></script>
 </body>
 </html>
