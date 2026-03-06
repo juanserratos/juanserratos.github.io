@@ -1,0 +1,192 @@
+{
+  "title": { "en": "Curriculum Vitae", "fr": "Curriculum Vitae", "es": "Curriculum Vitae" },
+  "sections": [
+    {
+      "heading": { "en": "Education", "fr": "Formation", "es": "Educaci\u00f3n" },
+      "entries": [
+        {
+          "institution": { "en": "University of Pennsylvania", "fr": "Universit\u00e9 de Pennsylvanie", "es": "Universidad de Pensilvania" },
+          "location": { "en": "Philadelphia, USA", "fr": "Philadelphie, \u00c9tats-Unis", "es": "Filadelfia, EE.UU." },
+          "role": { "en": "Ph.D. in Mathematics", "fr": "Ph.D. en math\u00e9matiques", "es": "Doctorado en Matem\u00e1ticas" },
+          "date": { "en": "Advised by Florian Pop \u2014 December 2028 (expected)", "fr": "Conseill\u00e9 par Florian Pop \u2014 d\u00e9cembre 2028 (pr\u00e9vu)", "es": "Asesorado por Florian Pop \u2014 Diciembre 2028 (esperado)" }
+        },
+        {
+          "institution": { "en": "University of Southern California (USC)", "fr": "Universit\u00e9 de Californie du Sud (USC)", "es": "Universidad del Sur de California (USC)" },
+          "location": { "en": "Los Angeles, USA", "fr": "Los Angeles, \u00c9tats-Unis", "es": "Los \u00c1ngeles, EE.UU." },
+          "role": { "en": "B.A. in Mathematics", "fr": "B.A. en math\u00e9matiques", "es": "Licenciatura en Matem\u00e1ticas" },
+          "date": { "en": "May 2024", "fr": "Mai 2024", "es": "Mayo 2024" }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Honors and Awards", "fr": "Distinctions", "es": "Honores y premios" },
+      "entries": [
+        {
+          "institution": { "en": "Graduate Fellowship", "fr": "Bourse doctorale", "es": "Beca doctoral" },
+          "role": { "en": "University of Pennsylvania", "fr": "Universit\u00e9 de Pennsylvanie", "es": "Universidad de Pensilvania" }
+        },
+        {
+          "institution": { "en": "Research Fellowship", "fr": "Bourse de recherche", "es": "Beca de investigaci\u00f3n" },
+          "role": { "en": "Computer Science and Artificial Intelligence Laboratory (CSAIL), MIT", "fr": "Laboratoire d\u2019informatique et d\u2019intelligence artificielle (CSAIL), MIT", "es": "Laboratorio de Ciencias de la Computaci\u00f3n e Inteligencia Artificial (CSAIL), MIT" }
+        },
+        {
+          "institution": { "en": "Departmental Honors in Mathematics", "fr": "Honneurs d\u00e9partementaux en math\u00e9matiques", "es": "Honores departamentales en Matem\u00e1ticas" },
+          "role": { "en": "University of Southern California", "fr": "Universit\u00e9 de Californie du Sud", "es": "Universidad del Sur de California" }
+        },
+        {
+          "institution": { "en": "Magna Cum Laude", "fr": "Magna Cum Laude", "es": "Magna Cum Laude" },
+          "role": { "en": "University of Southern California", "fr": "Universit\u00e9 de Californie du Sud", "es": "Universidad del Sur de California" }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Employment and Experience", "fr": "Emploi et exp\u00e9rience", "es": "Empleo y experiencia" },
+      "entries": [
+        {
+          "institution": { "en": "Goldman Sachs", "fr": "Goldman Sachs", "es": "Goldman Sachs" },
+          "location": { "en": "New York, NY", "fr": "New York, NY", "es": "Nueva York, NY" },
+          "role": { "en": "Incoming Quantitative Strategist Intern", "fr": "Stagiaire en strat\u00e9gie quantitative", "es": "Pasante de estrategia cuantitativa" },
+          "date": { "en": "June 2025 \u2013 August 2025", "fr": "Juin 2025 \u2013 ao\u00fbt 2025", "es": "Junio 2025 \u2013 Agosto 2025" },
+          "bullets": {
+            "en": [
+              "Developing and optimizing quantitative models to support trading strategies in the Synthetic Product Group (SPG), Equities.",
+              "Focus on developing risk analytics and optimization tools to enhance trading desk risk management and profitability.",
+              "Collaborating with traders, quants, and engineers to refine risk measurement methodologies and capital efficiency strategies."
+            ],
+            "fr": [
+              "D\u00e9veloppement et optimisation de mod\u00e8les quantitatifs pour soutenir les strat\u00e9gies de trading dans le Synthetic Product Group (SPG), Actions.",
+              "Accent sur le d\u00e9veloppement d\u2019outils d\u2019analyse de risque et d\u2019optimisation pour am\u00e9liorer la gestion des risques et la rentabilit\u00e9 du desk de trading.",
+              "Collaboration avec des traders, quants et ing\u00e9nieurs pour affiner les m\u00e9thodologies de mesure des risques et les strat\u00e9gies d\u2019efficacit\u00e9 du capital."
+            ],
+            "es": [
+              "Desarrollo y optimizaci\u00f3n de modelos cuantitativos para apoyar estrategias de negociaci\u00f3n en el Grupo de Productos Sint\u00e9ticos (SPG), Renta Variable.",
+              "Enfoque en el desarrollo de herramientas de an\u00e1lisis de riesgo y optimizaci\u00f3n para mejorar la gesti\u00f3n de riesgos y la rentabilidad de la mesa de negociaci\u00f3n.",
+              "Colaboraci\u00f3n con traders, analistas cuantitativos e ingenieros para perfeccionar metodolog\u00edas de medici\u00f3n de riesgo y estrategias de eficiencia de capital."
+            ]
+          }
+        },
+        {
+          "institution": { "en": "University of Southern California", "fr": "Universit\u00e9 de Californie du Sud", "es": "Universidad del Sur de California" },
+          "location": { "en": "Los Angeles, CA", "fr": "Los Angeles, CA", "es": "Los \u00c1ngeles, CA" },
+          "role": { "en": "Teaching and Managing Assistant", "fr": "Assistant d\u2019enseignement et de gestion", "es": "Asistente de ense\u00f1anza y gesti\u00f3n" },
+          "date": { "en": "August 2023 \u2013 May 2024", "fr": "Ao\u00fbt 2023 \u2013 mai 2024", "es": "Agosto 2023 \u2013 Mayo 2024" },
+          "bullets": {
+            "en": [
+              "Managed a large mathematics tutoring center with 50 teaching assistants and 500+ students involved per week.",
+              "Tutored/TA\u2019d core mathematics courses: probability, calculus 1\u20133, differential equations, linear algebra, real analysis, topology, and abstract algebra."
+            ],
+            "fr": [
+              "Gestion d\u2019un grand centre de tutorat en math\u00e9matiques avec 50 assistants d\u2019enseignement et plus de 500 \u00e9tudiants impliqu\u00e9s par semaine.",
+              "Tutorat et assistance pour les cours fondamentaux de math\u00e9matiques : probabilit\u00e9s, calcul 1\u20133, \u00e9quations diff\u00e9rentielles, alg\u00e8bre lin\u00e9aire, analyse r\u00e9elle, topologie et alg\u00e8bre abstraite."
+            ],
+            "es": [
+              "Gesti\u00f3n de un gran centro de tutor\u00edas de matem\u00e1ticas con 50 asistentes de ense\u00f1anza y m\u00e1s de 500 estudiantes por semana.",
+              "Tutor\u00eda y asistencia en cursos fundamentales de matem\u00e1ticas: probabilidad, c\u00e1lculo 1\u20133, ecuaciones diferenciales, \u00e1lgebra lineal, an\u00e1lisis real, topolog\u00eda y \u00e1lgebra abstracta."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Research", "fr": "Recherche", "es": "Investigaci\u00f3n" },
+      "entries": [
+        {
+          "institution": { "en": "Massachusetts Institute of Technology (MIT)", "fr": "Massachusetts Institute of Technology (MIT)", "es": "Instituto Tecnol\u00f3gico de Massachusetts (MIT)" },
+          "location": { "en": "Cambridge, MA", "fr": "Cambridge, MA", "es": "Cambridge, MA" },
+          "role": { "en": "Machine Learning Research Intern, CSAIL / SGI", "fr": "Stagiaire de recherche en apprentissage automatique, CSAIL / SGI", "es": "Pasante de investigaci\u00f3n en aprendizaje autom\u00e1tico, CSAIL / SGI" },
+          "date": { "en": "July 2024 \u2013 August 2024", "fr": "Juillet 2024 \u2013 ao\u00fbt 2024", "es": "Julio 2024 \u2013 Agosto 2024" },
+          "bullets": {
+            "en": [
+              "Evaluated and compared various machine learning models in generative geometry AI, integrating statistical learning techniques to optimize loss functions and architectures.",
+              "Further developed a deformable Graph2NeRF architecture using Graph Convolutional Networks (GCNs) for color feature aggregation and deformation fields for spatial transformation.",
+              "Implemented BD-Tree algorithm based on work of James and Pai for efficient collision detection in reduced deformable models."
+            ],
+            "fr": [
+              "\u00c9valuation et comparaison de divers mod\u00e8les d\u2019apprentissage automatique en IA g\u00e9n\u00e9rative pour la g\u00e9om\u00e9trie, int\u00e9grant des techniques d\u2019apprentissage statistique pour optimiser les fonctions de perte et les architectures.",
+              "D\u00e9veloppement approfondi d\u2019une architecture Graph2NeRF d\u00e9formable utilisant des r\u00e9seaux convolutionnels de graphes (GCN) pour l\u2019agr\u00e9gation de caract\u00e9ristiques de couleur et des champs de d\u00e9formation pour la transformation spatiale.",
+              "Impl\u00e9mentation de l\u2019algorithme BD-Tree bas\u00e9 sur les travaux de James et Pai pour la d\u00e9tection efficace de collisions dans les mod\u00e8les d\u00e9formables r\u00e9duits."
+            ],
+            "es": [
+              "Evaluaci\u00f3n y comparaci\u00f3n de diversos modelos de aprendizaje autom\u00e1tico en IA generativa de geometr\u00eda, integrando t\u00e9cnicas de aprendizaje estad\u00edstico para optimizar funciones de p\u00e9rdida y arquitecturas.",
+              "Desarrollo adicional de una arquitectura deformable Graph2NeRF utilizando Redes Convolucionales de Grafos (GCN) para la agregaci\u00f3n de caracter\u00edsticas de color y campos de deformaci\u00f3n para transformaci\u00f3n espacial.",
+              "Implementaci\u00f3n del algoritmo BD-Tree basado en el trabajo de James y Pai para la detecci\u00f3n eficiente de colisiones en modelos deformables reducidos."
+            ]
+          }
+        },
+        {
+          "institution": { "en": "National Security Agency (NSA)", "fr": "National Security Agency (NSA)", "es": "Agencia de Seguridad Nacional (NSA)" },
+          "location": { "en": "Los Angeles, CA", "fr": "Los Angeles, CA", "es": "Los \u00c1ngeles, CA" },
+          "role": { "en": "Mathematics Research Intern", "fr": "Stagiaire de recherche en math\u00e9matiques", "es": "Pasante de investigaci\u00f3n en matem\u00e1ticas" },
+          "date": { "en": "June 2023 \u2013 August 2023", "fr": "Juin 2023 \u2013 ao\u00fbt 2023", "es": "Junio 2023 \u2013 Agosto 2023" },
+          "bullets": {
+            "en": [
+              "Selected as 1 of 6 research fellows in a 10-week NSA-funded research project focused on a problem in theoretical computer science at Occidental College.",
+              "Conducted original research in algebraic coding theory, utilizing algebraic number theory to prove new theorems providing significant evidence towards resolving a key problem in theoretical computer science.",
+              "Paper accepted for presentation at JMM 2024; currently being prepared for publication."
+            ],
+            "fr": [
+              "S\u00e9lectionn\u00e9 parmi 6 boursiers de recherche dans un projet de recherche de 10 semaines financ\u00e9 par la NSA, ax\u00e9 sur un probl\u00e8me d\u2019informatique th\u00e9orique \u00e0 Occidental College.",
+              "Recherche originale en th\u00e9orie alg\u00e9brique des codes, utilisant la th\u00e9orie alg\u00e9brique des nombres pour d\u00e9montrer de nouveaux th\u00e9or\u00e8mes fournissant des preuves significatives vers la r\u00e9solution d\u2019un probl\u00e8me cl\u00e9 en informatique th\u00e9orique.",
+              "Article accept\u00e9 pour pr\u00e9sentation au JMM 2024 ; actuellement en pr\u00e9paration pour publication."
+            ],
+            "es": [
+              "Seleccionado como 1 de 6 becarios de investigaci\u00f3n en un proyecto de 10 semanas financiado por la NSA centrado en un problema de inform\u00e1tica te\u00f3rica en Occidental College.",
+              "Investigaci\u00f3n original en teor\u00eda de c\u00f3digos algebraicos, utilizando teor\u00eda algebraica de n\u00fameros para demostrar nuevos teoremas que proporcionan evidencia significativa hacia la resoluci\u00f3n de un problema clave en inform\u00e1tica te\u00f3rica.",
+              "Art\u00edculo aceptado para presentaci\u00f3n en JMM 2024; actualmente en preparaci\u00f3n para publicaci\u00f3n."
+            ]
+          }
+        },
+        {
+          "institution": { "en": "University of Southern California", "fr": "Universit\u00e9 de Californie du Sud", "es": "Universidad del Sur de California" },
+          "location": { "en": "Los Angeles, CA", "fr": "Los Angeles, CA", "es": "Los \u00c1ngeles, CA" },
+          "role": { "en": "Undergraduate Researcher", "fr": "Chercheur de premier cycle", "es": "Investigador de pregrado" },
+          "date": { "en": "August 2022 \u2013 December 2022, August 2023 \u2013 December 2023", "fr": "Ao\u00fbt 2022 \u2013 d\u00e9cembre 2022, ao\u00fbt 2023 \u2013 d\u00e9cembre 2023", "es": "Agosto 2022 \u2013 Diciembre 2022, Agosto 2023 \u2013 Diciembre 2023" },
+          "bullets": {
+            "en": [
+              "Directed research with Anne Dranowski: representation theory, the geometric Langlands program, Galois representations, and perverse sheaves. Final project on Fontaine\u2019s <em>p</em>-adic period ring B<sub>dR</sub>.",
+              "Directed research with Aravind Asok: modern algebraic geometry for the Weil Conjectures and \u00e9tale cohomology."
+            ],
+            "fr": [
+              "Recherche dirig\u00e9e avec Anne Dranowski : th\u00e9orie des repr\u00e9sentations, programme de Langlands g\u00e9om\u00e9trique, repr\u00e9sentations galoisiennes et faisceaux pervers. Projet final sur l\u2019anneau de p\u00e9riodes <em>p</em>-adiques B<sub>dR</sub> de Fontaine.",
+              "Recherche dirig\u00e9e avec Aravind Asok : g\u00e9om\u00e9trie alg\u00e9brique moderne pour les conjectures de Weil et la cohomologie \u00e9tale."
+            ],
+            "es": [
+              "Investigaci\u00f3n dirigida con Anne Dranowski: teor\u00eda de representaciones, el programa geom\u00e9trico de Langlands, representaciones de Galois y haces perversos. Proyecto final sobre el anillo de periodos <em>p</em>-\u00e1dicos B<sub>dR</sub> de Fontaine.",
+              "Investigaci\u00f3n dirigida con Aravind Asok: geometr\u00eda algebraica moderna para las conjeturas de Weil y cohomolog\u00eda \u00e9tale."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Talks", "fr": "Conf\u00e9rences", "es": "Charlas" },
+      "entries": [
+        {
+          "institution": { "en": "Algebraic Curves: Genus and Diophantine Geometry", "fr": "Courbes alg\u00e9briques : genre et g\u00e9om\u00e9trie diophantienne", "es": "Curvas algebraicas: g\u00e9nero y geometr\u00eda diof\u00e1ntica" },
+          "date": { "en": "July 2023 \u2014 Occidental College", "fr": "Juillet 2023 \u2014 Occidental College", "es": "Julio 2023 \u2014 Occidental College" }
+        },
+        {
+          "institution": { "en": "Children\u2019s pictures of Spec <em>A</em>", "fr": "Dessins d\u2019enfants de Spec <em>A</em>", "es": "Dibujos infantiles de Spec <em>A</em>" },
+          "date": { "en": "June 2023 \u2014 Occidental College", "fr": "Juin 2023 \u2014 Occidental College", "es": "Junio 2023 \u2014 Occidental College" }
+        },
+        {
+          "institution": { "en": "\u00c9tale Cohomology, as motivated by the Weil Conjectures", "fr": "Cohomologie \u00e9tale, motiv\u00e9e par les conjectures de Weil", "es": "Cohomolog\u00eda \u00e9tale, motivada por las conjeturas de Weil" },
+          "date": { "en": "December 2022 \u2014 University of Southern California", "fr": "D\u00e9cembre 2022 \u2014 Universit\u00e9 de Californie du Sud", "es": "Diciembre 2022 \u2014 Universidad del Sur de California" }
+        },
+        {
+          "institution": { "en": "Arithmetic Schemes: David Mumford\u2019s depiction of Spec \u2124[T]", "fr": "Sch\u00e9mas arithm\u00e9tiques : la repr\u00e9sentation de Spec \u2124[T] par David Mumford", "es": "Esquemas aritm\u00e9ticos: la representaci\u00f3n de David Mumford de Spec \u2124[T]" },
+          "date": { "en": "May 2022 \u2014 University of Southern California", "fr": "Mai 2022 \u2014 Universit\u00e9 de Californie du Sud", "es": "Mayo 2022 \u2014 Universidad del Sur de California" }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Technologies", "fr": "Technologies", "es": "Tecnolog\u00edas" },
+      "text": { "en": "Python, SQL, Sage, HTML/CSS, LaTeX, Excel, MS Office", "fr": "Python, SQL, Sage, HTML/CSS, LaTeX, Excel, MS Office", "es": "Python, SQL, Sage, HTML/CSS, LaTeX, Excel, MS Office" }
+    }
+  ],
+  "cvDownload": {
+    "en": "Download full CV (PDF)",
+    "fr": "T\u00e9l\u00e9charger le CV complet (PDF)",
+    "es": "Descargar CV completo (PDF)"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": { "en": "Publications", "fr": "Publications", "es": "Publicaciones" },
+  "sections": [
+    {
+      "heading": { "en": "Articles", "fr": "Articles", "es": "Art\u00edculos" },
+      "articles": [
+        {
+          "number": 2,
+          "authors": "Jim Brown, Juan Serratos, Uma Tikekar, Johnthan Webb",
+          "title": "Lattices and their associated theta series for linear codes defined over $\\mathbf{F}_8$",
+          "venue": { "en": "Presented at JMM 2024. In preparation for publication.", "fr": "Pr\u00e9sent\u00e9 au JMM 2024. En pr\u00e9paration pour publication.", "es": "Presentado en JMM 2024. En preparaci\u00f3n para publicaci\u00f3n." }
+        },
+        {
+          "number": 1,
+          "authors": "Juan Serratos",
+          "title": "On the prime spectrum of the $p$-adic integer polynomial ring with a depiction",
+          "venue": { "en": "arXiv:2304.03523", "fr": "arXiv:2304.03523", "es": "arXiv:2304.03523" },
+          "link": { "url": "https://arxiv.org/abs/2304.03523", "label": "arXiv" }
+        }
+      ]
+    }
+  ],
+  "researchAreas": {
+    "heading": { "en": "Research areas", "fr": "Domaines de recherche", "es": "\u00c1reas de investigaci\u00f3n" },
+    "text": {
+      "en": "Broadly: arithmetic geometry. The interplay between $\\mathbf{Q}$-points and algebraic geometry, with growing interest in the Galois theory aspect relating to $\\pi_1^{\\text{\u00e9t}}$.",
+      "fr": "En g\u00e9n\u00e9ral : g\u00e9om\u00e9trie arithm\u00e9tique. L\u2019interaction entre les $\\mathbf{Q}$-points et la g\u00e9om\u00e9trie alg\u00e9brique, avec un int\u00e9r\u00eat croissant pour l\u2019aspect th\u00e9orie de Galois li\u00e9 \u00e0 $\\pi_1^{\\text{\u00e9t}}$.",
+      "es": "En t\u00e9rminos generales: geometr\u00eda aritm\u00e9tica. La interacci\u00f3n entre $\\mathbf{Q}$-puntos y geometr\u00eda algebraica, con un inter\u00e9s creciente en el aspecto de la teor\u00eda de Galois relacionado con $\\pi_1^{\\text{\u00e9t}}$."
+    }
+  }
+}

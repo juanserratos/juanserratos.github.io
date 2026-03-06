@@ -10,129 +10,7 @@
 </head>
 <body>
   <div class="page-layout">
-    <div class="content-panel">
-      <h1>Curriculum Vitae</h1>
-
-      <h2>Education</h2>
-
-      <div class="cv-entry">
-        <div class="institution">University of Pennsylvania <span class="location">Philadelphia, USA</span></div>
-        <div class="role">Ph.D. in Mathematics</div>
-        <div class="date">Advised by Florian Pop &mdash; December 2028 (expected)</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">University of Southern California (USC) <span class="location">Los Angeles, USA</span></div>
-        <div class="role">B.A. in Mathematics</div>
-        <div class="date">May 2024</div>
-      </div>
-
-      <h2>Honors and Awards</h2>
-
-      <div class="cv-entry">
-        <div class="institution">Graduate Fellowship</div>
-        <div class="role">University of Pennsylvania</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">Research Fellowship</div>
-        <div class="role">Computer Science and Artificial Intelligence Laboratory (CSAIL), MIT</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">Departmental Honors in Mathematics</div>
-        <div class="role">University of Southern California</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">Magna Cum Laude</div>
-        <div class="role">University of Southern California</div>
-      </div>
-
-      <h2>Employment and Experience</h2>
-
-      <div class="cv-entry">
-        <div class="institution">Goldman Sachs <span class="location">New York, NY</span></div>
-        <div class="role">Incoming Quantitative Strategist Intern</div>
-        <div class="date">June 2025 &ndash; August 2025</div>
-        <ul>
-          <li>Developing and optimizing quantitative models to support trading strategies in the Synthetic Product Group (SPG), Equities.</li>
-          <li>Focus on developing risk analytics and optimization tools to enhance trading desk risk management and profitability.</li>
-          <li>Collaborating with traders, quants, and engineers to refine risk measurement methodologies and capital efficiency strategies.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">University of Southern California <span class="location">Los Angeles, CA</span></div>
-        <div class="role">Teaching and Managing Assistant</div>
-        <div class="date">August 2023 &ndash; May 2024</div>
-        <ul>
-          <li>Managed a large mathematics tutoring center with 50 teaching assistants and 500+ students involved per week.</li>
-          <li>Tutored/TA&rsquo;d core mathematics courses: probability, calculus 1&ndash;3, differential equations, linear algebra, real analysis, topology, and abstract algebra.</li>
-        </ul>
-      </div>
-
-      <h2>Research</h2>
-
-      <div class="cv-entry">
-        <div class="institution">Massachusetts Institute of Technology (MIT) <span class="location">Cambridge, MA</span></div>
-        <div class="role">Machine Learning Research Intern, CSAIL / SGI</div>
-        <div class="date">July 2024 &ndash; August 2024</div>
-        <ul>
-          <li>Evaluated and compared various machine learning models in generative geometry AI, integrating statistical learning techniques to optimize loss functions and architectures.</li>
-          <li>Further developed a deformable Graph2NeRF architecture using Graph Convolutional Networks (GCNs) for color feature aggregation and deformation fields for spatial transformation.</li>
-          <li>Implemented BD-Tree algorithm based on work of James and Pai for efficient collision detection in reduced deformable models.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">National Security Agency (NSA) <span class="location">Los Angeles, CA</span></div>
-        <div class="role">Mathematics Research Intern</div>
-        <div class="date">June 2023 &ndash; August 2023</div>
-        <ul>
-          <li>Selected as 1 of 6 research fellows in a 10-week NSA-funded research project focused on a problem in theoretical computer science at Occidental College.</li>
-          <li>Conducted original research in algebraic coding theory, utilizing algebraic number theory to prove new theorems providing significant evidence towards resolving a key problem in theoretical computer science.</li>
-          <li>Paper accepted for presentation at JMM 2024; currently being prepared for publication.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">University of Southern California <span class="location">Los Angeles, CA</span></div>
-        <div class="role">Undergraduate Researcher</div>
-        <div class="date">August 2022 &ndash; December 2022, August 2023 &ndash; December 2023</div>
-        <ul>
-          <li>Directed research with Anne Dranowski: representation theory, the geometric Langlands program, Galois representations, and perverse sheaves. Final project on Fontaine&rsquo;s <em>p</em>-adic period ring B<sub>dR</sub>.</li>
-          <li>Directed research with Aravind Asok: modern algebraic geometry for the Weil Conjectures and &eacute;tale cohomology.</li>
-        </ul>
-      </div>
-
-      <h2>Talks</h2>
-
-      <div class="cv-entry">
-        <div class="institution">Algebraic Curves: Genus and Diophantine Geometry</div>
-        <div class="date">July 2023 &mdash; Occidental College</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">Children&rsquo;s pictures of Spec <em>A</em></div>
-        <div class="date">June 2023 &mdash; Occidental College</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">&Eacute;tale Cohomology, as motivated by the Weil Conjectures</div>
-        <div class="date">December 2022 &mdash; University of Southern California</div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="institution">Arithmetic Schemes: David Mumford&rsquo;s depiction of Spec &#8484;[T]</div>
-        <div class="date">May 2022 &mdash; University of Southern California</div>
-      </div>
-
-      <h2>Technologies</h2>
-      <p>Python, SQL, Sage, HTML/CSS, LaTeX, Excel, MS Office</p>
-
-      <p style="margin-top: 40px;"><a href="cv.pdf">Download full CV (PDF)</a></p>
-    </div>
+    <div class="content-panel" id="content"></div>
 
     <aside class="sidebar">
       <div class="sidebar-lang">
@@ -158,5 +36,6 @@
       </div>
     </aside>
   </div>
+  <script src="render.js" data-page="cv"></script>
 </body>
 </html>

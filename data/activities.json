@@ -1,0 +1,70 @@
+{
+  "title": { "en": "Activities", "fr": "Activit\u00e9s", "es": "Actividades" },
+  "sections": [
+    {
+      "heading": { "en": "Talks and Presentations", "fr": "Conf\u00e9rences et pr\u00e9sentations", "es": "Charlas y presentaciones" },
+      "entries": [
+        {
+          "title": { "en": "Algebraic Curves: Genus and Diophantine Geometry", "fr": "Courbes alg\u00e9briques : genre et g\u00e9om\u00e9trie diophantienne", "es": "Curvas algebraicas: g\u00e9nero y geometr\u00eda diof\u00e1ntica" },
+          "meta": { "en": "July 2023 \u2014 Occidental College", "fr": "Juillet 2023 \u2014 Occidental College", "es": "Julio 2023 \u2014 Occidental College" }
+        },
+        {
+          "title": { "en": "Children\u2019s pictures of Spec <em>A</em>", "fr": "Dessins d\u2019enfants de Spec <em>A</em>", "es": "Dibujos infantiles de Spec <em>A</em>" },
+          "meta": { "en": "June 2023 \u2014 Occidental College", "fr": "Juin 2023 \u2014 Occidental College", "es": "Junio 2023 \u2014 Occidental College" }
+        },
+        {
+          "title": { "en": "\u00c9tale Cohomology, as motivated by the Weil Conjectures", "fr": "Cohomologie \u00e9tale, motiv\u00e9e par les conjectures de Weil", "es": "Cohomolog\u00eda \u00e9tale, motivada por las conjeturas de Weil" },
+          "meta": { "en": "December 2022 \u2014 University of Southern California", "fr": "D\u00e9cembre 2022 \u2014 Universit\u00e9 de Californie du Sud", "es": "Diciembre 2022 \u2014 Universidad del Sur de California" }
+        },
+        {
+          "title": { "en": "Arithmetic Schemes: David Mumford\u2019s depiction of Spec \u2124[T]", "fr": "Sch\u00e9mas arithm\u00e9tiques : la repr\u00e9sentation de Spec \u2124[T] par David Mumford", "es": "Esquemas aritm\u00e9ticos: la representaci\u00f3n de David Mumford de Spec \u2124[T]" },
+          "meta": { "en": "May 2022 \u2014 University of Southern California", "fr": "Mai 2022 \u2014 Universit\u00e9 de Californie du Sud", "es": "Mayo 2022 \u2014 Universidad del Sur de California" }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Conference Presentations", "fr": "Pr\u00e9sentations en conf\u00e9rence", "es": "Presentaciones en conferencias" },
+      "entries": [
+        {
+          "title": { "en": "Lattices and their associated theta series for linear codes defined over F<sub>8</sub>", "fr": "Lattices and their associated theta series for linear codes defined over F<sub>8</sub>", "es": "Lattices and their associated theta series for linear codes defined over F<sub>8</sub>" },
+          "meta": { "en": "Joint Mathematics Meetings (JMM) 2024", "fr": "Joint Mathematics Meetings (JMM) 2024", "es": "Reuni\u00f3n Conjunta de Matem\u00e1ticas (JMM) 2024" }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Research Programs", "fr": "Programmes de recherche", "es": "Programas de investigaci\u00f3n" },
+      "entries": [
+        {
+          "title": { "en": "Summer Geometry Initiative (SGI), MIT CSAIL", "fr": "Summer Geometry Initiative (SGI), MIT CSAIL", "es": "Iniciativa de Geometr\u00eda de Verano (SGI), MIT CSAIL" },
+          "meta": { "en": "Summer 2024 \u2014 Research Fellow", "fr": "\u00c9t\u00e9 2024 \u2014 Boursier de recherche", "es": "Verano 2024 \u2014 Becario de investigaci\u00f3n" },
+          "description": { "en": "Machine learning in generative geometry AI. Deformable Graph2NeRF architectures, BD-Tree collision detection.", "fr": "Apprentissage automatique en IA g\u00e9n\u00e9rative pour la g\u00e9om\u00e9trie. Architectures Graph2NeRF d\u00e9formables, d\u00e9tection de collisions BD-Tree.", "es": "Aprendizaje autom\u00e1tico en IA generativa de geometr\u00eda. Arquitecturas deformables Graph2NeRF, detecci\u00f3n de colisiones BD-Tree." },
+          "link": { "url": "https://summergeometry.org/sgi2024/reduced-deformation-collision-detection/", "label": { "en": "Project page", "fr": "Page du projet", "es": "P\u00e1gina del proyecto" } }
+        },
+        {
+          "title": { "en": "NSA Mathematics Research Program", "fr": "Programme de recherche en math\u00e9matiques de la NSA", "es": "Programa de investigaci\u00f3n en matem\u00e1ticas de la NSA" },
+          "meta": { "en": "Summer 2023 \u2014 Research Fellow, Occidental College", "fr": "\u00c9t\u00e9 2023 \u2014 Boursier de recherche, Occidental College", "es": "Verano 2023 \u2014 Becario de investigaci\u00f3n, Occidental College" },
+          "description": { "en": "Algebraic coding theory. Selected as 1 of 6 fellows; fully funded by the NSA.", "fr": "Th\u00e9orie alg\u00e9brique des codes. S\u00e9lectionn\u00e9 parmi 6 boursiers ; enti\u00e8rement financ\u00e9 par la NSA.", "es": "Teor\u00eda de c\u00f3digos algebraicos. Seleccionado como 1 de 6 becarios; financiado completamente por la NSA." }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Teaching and Administrative", "fr": "Enseignement et administration", "es": "Ense\u00f1anza y administraci\u00f3n" },
+      "entries": [
+        {
+          "title": { "en": "Mathematics Tutoring Center Manager", "fr": "Responsable du centre de tutorat en math\u00e9matiques", "es": "Gerente del centro de tutor\u00edas en matem\u00e1ticas" },
+          "meta": { "en": "University of Southern California, 2023\u20132024", "fr": "Universit\u00e9 de Californie du Sud, 2023\u20132024", "es": "Universidad del Sur de California, 2023\u20132024" },
+          "description": { "en": "Managed 50 teaching assistants and 500+ students per week across in-person and online tutoring.", "fr": "Gestion de 50 assistants d\u2019enseignement et plus de 500 \u00e9tudiants par semaine en tutorat en pr\u00e9sentiel et en ligne.", "es": "Gesti\u00f3n de 50 asistentes de ense\u00f1anza y m\u00e1s de 500 estudiantes por semana en tutor\u00edas presenciales y en l\u00ednea." }
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Industry", "fr": "Industrie", "es": "Industria" },
+      "entries": [
+        {
+          "title": { "en": "Quantitative Strategist Intern \u2014 Goldman Sachs", "fr": "Stagiaire en strat\u00e9gie quantitative \u2014 Goldman Sachs", "es": "Pasante de estrategia cuantitativa \u2014 Goldman Sachs" },
+          "meta": { "en": "Summer 2025 \u2014 Synthetic Product Group (SPG), Equities", "fr": "\u00c9t\u00e9 2025 \u2014 Synthetic Product Group (SPG), Actions", "es": "Verano 2025 \u2014 Grupo de Productos Sint\u00e9ticos (SPG), Renta Variable" }
+        }
+      ]
+    }
+  ]
+}

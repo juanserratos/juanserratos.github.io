@@ -1,0 +1,59 @@
+{
+  "title": { "en": "Courses", "fr": "Cours", "es": "Cursos" },
+  "sections": [
+    {
+      "heading": { "en": "University of Pennsylvania", "fr": "Universit\u00e9 de Pennsylvanie", "es": "Universidad de Pensilvania" },
+      "subtitle": { "en": "Ph.D. coursework, 2024\u2013present", "fr": "Cours de doctorat, 2024\u2013pr\u00e9sent", "es": "Cursos de doctorado, 2024\u2013presente" },
+      "note": { "en": "Course details to be updated.", "fr": "D\u00e9tails des cours \u00e0 mettre \u00e0 jour.", "es": "Detalles por actualizar." },
+      "courses": []
+    },
+    {
+      "heading": { "en": "Teaching at University of Southern California", "fr": "Enseignement \u00e0 l\u2019Universit\u00e9 de Californie du Sud", "es": "Ense\u00f1anza en la Universidad del Sur de California" },
+      "subtitle": { "en": "Teaching and Managing Assistant, August 2023 \u2013 May 2024", "fr": "Assistant d\u2019enseignement et de gestion, ao\u00fbt 2023 \u2013 mai 2024", "es": "Asistente de ense\u00f1anza y gesti\u00f3n, agosto 2023 \u2013 mayo 2024" },
+      "note": { "en": "Tutored and TA\u2019d the following core mathematics courses:", "fr": "Tutorat et assistance pour les cours fondamentaux de math\u00e9matiques suivants :", "es": "Tutor\u00eda y asistencia en los siguientes cursos fundamentales de matem\u00e1ticas:" },
+      "courses": [
+        {
+          "title": { "en": "Abstract Algebra", "fr": "Alg\u00e8bre abstraite", "es": "\u00c1lgebra abstracta" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Topology", "fr": "Topologie", "es": "Topolog\u00eda" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Real Analysis", "fr": "Analyse r\u00e9elle", "es": "An\u00e1lisis real" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Linear Algebra", "fr": "Alg\u00e8bre lin\u00e9aire", "es": "\u00c1lgebra lineal" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Differential Equations", "fr": "\u00c9quations diff\u00e9rentielles", "es": "Ecuaciones diferenciales" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Calculus I, II, III", "fr": "Calcul I, II, III", "es": "C\u00e1lculo I, II, III" },
+          "meta": "USC \u2014 2023\u20132024"
+        },
+        {
+          "title": { "en": "Probability", "fr": "Probabilit\u00e9s", "es": "Probabilidad" },
+          "meta": "USC \u2014 2023\u20132024"
+        }
+      ]
+    },
+    {
+      "heading": { "en": "Directed Reading / Research", "fr": "Lecture dirig\u00e9e / Recherche", "es": "Lectura dirigida / Investigaci\u00f3n" },
+      "courses": [
+        {
+          "title": { "en": "Representation Theory, Geometric Langlands, Perverse Sheaves", "fr": "Th\u00e9orie des repr\u00e9sentations, Langlands g\u00e9om\u00e9trique, faisceaux pervers", "es": "Teor\u00eda de representaciones, Langlands geom\u00e9trico, haces perversos" },
+          "meta": { "en": "With Anne Dranowski \u2014 USC, Fall 2023", "fr": "Avec Anne Dranowski \u2014 USC, automne 2023", "es": "Con Anne Dranowski \u2014 USC, oto\u00f1o 2023" }
+        },
+        {
+          "title": { "en": "Algebraic Geometry for the Weil Conjectures and \u00c9tale Cohomology", "fr": "G\u00e9om\u00e9trie alg\u00e9brique pour les conjectures de Weil et cohomologie \u00e9tale", "es": "Geometr\u00eda algebraica para las conjeturas de Weil y cohomolog\u00eda \u00e9tale" },
+          "meta": { "en": "With Aravind Asok \u2014 USC, Fall 2022", "fr": "Avec Aravind Asok \u2014 USC, automne 2022", "es": "Con Aravind Asok \u2014 USC, oto\u00f1o 2022" }
+        }
+      ]
+    }
+  ]
+}
