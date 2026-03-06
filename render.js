@@ -135,9 +135,9 @@
     var h = '<h1>' + t(data.title) + '</h1>';
 
     data.books.forEach(function (b) {
-      var tagClass = b.status === 'reading' ? 'tag-reading' :
-                     b.status === 'read'    ? 'tag-read' :
-                                              'tag-want';
+      var tagClass = b.status === 'reading'  ? 'tag-reading' :
+                     b.status === 'read'     ? 'tag-finished' :
+                                               'tag-want';
       h += '<div class="book-entry">';
       h += '<div class="book-header" onclick="this.parentElement.classList.toggle(\'open\')">';
       h += '<span class="book-toggle">+</span>';
