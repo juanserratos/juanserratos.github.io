@@ -382,14 +382,19 @@ h1, h2, h3, h4 {
 }
 
 .book-notes {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
+  transition: grid-template-rows 0.35s ease, padding 0.35s ease;
   padding: 0 16px 0 42px;
 }
 
+.book-notes > * {
+  overflow: hidden;
+}
+
 .book-entry.open .book-notes {
-  max-height: 500px;
+  grid-template-rows: 1fr;
   padding: 0 16px 14px 42px;
 }
 
